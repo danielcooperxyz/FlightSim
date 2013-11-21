@@ -3,6 +3,8 @@
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+    height:100%;
+    width:100%;
 }
 
 header, footer, nav, section {
@@ -61,14 +63,38 @@ textarea {
 }
 
 /* General */
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    color: #fff;
+    text-decoration-style: none;
+}
+
+    a:hover{
+        color: #fff;
+        text-decoration-style: none;
+    }
+
+    a:visited {
+        color:#fff;
+        text-decoration-style: none;
+    }
+
+.mainText{
+    color: #00529B;
+}
+
 .button {
     font-size: 100%;
     padding: .5em 1.5em;
-    color: #444;
-    color: rgba(0,0,0,.8);
+    color: #fff;
     border: 1px solid #999;
     border: 0 rgba(0,0,0,0);
-    background-color: #E6E6E6;
+    background-color: #00529B;
     text-decoration: none;
     border-radius: 2px;
     -webkit-transition: .1s linear -webkit-box-shadow;
@@ -81,15 +107,43 @@ textarea {
 /* Home */
 #start {
     width: 20%;
+    margin-top: 15%;
+    text-align:center;
+    font-size: 150%;
+}
+
+#logo{
+    height: 133px;
+    width: 220px;
+    margin-top:5%;
+    background-image: url("Images/brunel_logo.jpg");
+    background-repeat: no-repeat;
+    background-position-x: -5px;
+}
+
+#titleContainer{
+    margin-top:5%;
+    width: auto;
+    display: block;
+    white-space: nowrap;
+    position: absolute;
+    left:50%;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+#title{
+    position: relative;
+    left: -50%;
 }
 
 
 /* Experiments */
 .circle { 
-    width: 10px; 
-    height: 10px; 
-    -webkit-border-radius: 25px; 
-    -moz-border-radius: 25px; 
+    width: 10dp; 
+    height: 10dp; 
+    -webkit-border-radius: 25dp; 
+    -moz-border-radius: 25dp; 
     border-radius: 25px;
     border-color:#7F7F7F;
     border-width:2px;

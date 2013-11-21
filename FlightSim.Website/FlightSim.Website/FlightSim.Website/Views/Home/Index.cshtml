@@ -2,9 +2,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript" src="~/Scripts/flightSim.js"></script>
 
-<div id="logo"></div>
+<div id="logo" class="centered"></div>
 
-<div id="start" class="button">
-    @Html.ActionLink("Start", "Index", "Experiment")
+<div id="titleContainer" class="mainText">
+    <div id="title">Level 3 Aviation Engineering Experimental Research</div>
 </div>
+
+<a href=@Url.Action("Index", "Experiment")><div id ="start" class="centered button" >START</div></a>
