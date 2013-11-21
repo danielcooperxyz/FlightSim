@@ -15,7 +15,7 @@ namespace FlightSim.Website.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
     }
