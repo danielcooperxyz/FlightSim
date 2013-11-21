@@ -8,14 +8,15 @@ namespace FlightSim.Website.Controllers
     using System.Web;
     using System.Web.Mvc;
 
-    public class HomeController : Controller
+    public class ExperimentController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Experiment/
 
         public ActionResult Index()
         {
-            return this.View();
+            return View();
         }
+
     }
 }
