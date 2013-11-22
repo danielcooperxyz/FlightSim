@@ -1,4 +1,4 @@
-var winObj, transparency, size;
+var winObj, transparency, size, target;
 
 function getRandomX(){
 	var randomInt = Math.random(),
@@ -18,18 +18,20 @@ function getNewValue(time, constant){
 	return (time * constant);
 }
 
-function setPosition(object){
+function setPosition(target)
+{
 	var newCircle,
-	randX = getRandX(),
-	randY = getRandY();
+	randX = getRandomX(),
+	randY = getRandomY();
 
-	object.css('top', randY);
-	object.css('left', randX);
+	target.css('top', randY);
+	target.css('left', randX);
 }
 
-function updateObject(object){
-
-	
+function updateObject()
+{
+    
+    setPosition(target);
 }
 
 $(document).ready(function()
@@ -43,6 +45,14 @@ $(document).ready(function()
 	size = $('#sizeConstant');
 
 	
-	// Set timer
-	setInterval(updateObject(object), 100);
+    // Set timer
+	if ($("#experiment").length)
+	{
+	    target = $("#template");
+
+	    setPosition(target);
+	    target.show();
+
+	    setInterval(updateObject, 1000);
+	}
 });
