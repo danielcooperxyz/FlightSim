@@ -1,4 +1,4 @@
-var winObj, transparency, size, target;
+var winObj, transparency, size, target, timer;
 
 function getRandomX(){
 	var randomInt = Math.random(),
@@ -28,10 +28,16 @@ function setPosition(target)
 	target.css('left', randX);
 }
 
+function updateTransparency()
+{
+
+
+    target.css("opacity", value);
+}
+
 function updateObject()
 {
-    
-    setPosition(target);
+    timer++;
 }
 
 $(document).ready(function()
@@ -41,17 +47,20 @@ $(document).ready(function()
 	object = $('')
 
 	winObj = $(window);
-	transparency = $('#transparencyConstant');
-	size = $('#sizeConstant');
-
 	
     // Set timer
 	if ($("#experiment").length)
 	{
+	    transparency = $('#TransparencyConstant');
+	    size = $('#SizeConstant');
 	    target = $("#template");
 
 	    setPosition(target);
 	    target.show();
+
+	    timer = 0;
+
+	    setPosition(target);
 
 	    setInterval(updateObject, 1000);
 	}

@@ -1,9 +1,12 @@
-﻿@{
+﻿@model FlightSim.Website.Models.ExperimentModel
+@{
     ViewBag.Title = "Flight Sim";
 }
 
 <script type="text/javascript" src="~/Scripts/flightSim.js"></script>
 
 <div id="experiment">
+    @Html.HiddenFor(m => m.TransparencyConstant);
+    @Html.HiddenFor(m => m.SizeConstant);
     <div id="template" hidden="hidden" class="circle"></div>
 </div>
