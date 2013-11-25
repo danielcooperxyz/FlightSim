@@ -1,4 +1,4 @@
-var winObj, transparency, size, target, timer;
+var winObj, transConstant, sizeConstant, target, timer;
 
 function getRandomX(){
 	var randomInt = Math.random(),
@@ -30,14 +30,25 @@ function setPosition(target)
 
 function updateTransparency()
 {
-
+    var transValue = getNewValue(timer, transparency);
 
     target.css("opacity", value);
+}
+
+function updateSize()
+{
+    var sizeValue = getNewValue(timer, size);
+
+    target.height(size);
+    target.width(size);
 }
 
 function updateObject()
 {
     timer++;
+
+    updateTransparency();
+    updateSize();
 }
 
 $(document).ready(function()
