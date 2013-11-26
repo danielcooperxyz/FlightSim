@@ -26,30 +26,78 @@ namespace FlightSim.Website.Controllers
 
         private ExperimentModel GetConfiguration(ExperimentModel model)
         {
-            string transparencyConfig = ConfigurationManager.AppSettings["transparency"];
+            string transparencyConfig = ConfigurationManager.AppSettings["TransparencyConstant"];
 
-            float result = 0;
+            float floatCast = 0;
 
-            if (!float.TryParse(transparencyConfig, out result))
+            if (!float.TryParse(transparencyConfig, out floatCast))
             {
                 throw new InvalidCastException();
             }
             else
             {
-                model.TransparencyConstant = result;
+                model.TransparencyConstant = floatCast;
             }
 
 
-            string sizeConfig = ConfigurationManager.AppSettings["size"];
-            result = 0;
+            string sizeConfig = ConfigurationManager.AppSettings["SizeConstant"];
+            floatCast = 0;
 
-            if (!float.TryParse(sizeConfig, out result))
+            if (!float.TryParse(sizeConfig, out floatCast))
             {
                 throw new InvalidCastException();
             }
             else
             {
-                model.SizeConstant = result;
+                model.SizeConstant = floatCast;
+            }
+
+            string initialRad = ConfigurationManager.AppSettings["InitialRadius"];
+            floatCast = 0;
+
+            if (!float.TryParse(initialRad, out floatCast))
+            {
+                throw new InvalidCastException();
+            }
+            else
+            {
+                model.InitialRadius = floatCast;
+            }
+
+            string atmosVis = ConfigurationManager.AppSettings["AtmosphericVisibility"];
+            int intCast = 0;
+
+            if (!int.TryParse(atmosVis, out intCast))
+            {
+                throw new InvalidCastException();
+            }
+            else
+            {
+                model.AtmosphericVisibility = intCast;
+            }
+
+            string userDis = ConfigurationManager.AppSettings["UserDistance"];
+            intCast = 0;
+
+            if (!int.TryParse(userDis, out intCast))
+            {
+                throw new InvalidCastException();
+            }
+            else
+            {
+                model.UserDistance = intCast;
+            }
+
+            string realTargetSize = ConfigurationManager.AppSettings["RealTargetSize"];
+            intCast = 0;
+
+            if (!int.TryParse(realTargetSize, out intCast))
+            {
+                throw new InvalidCastException();
+            }
+            else
+            {
+                model.RealTargetSize = intCast;
             }
 
             return model;

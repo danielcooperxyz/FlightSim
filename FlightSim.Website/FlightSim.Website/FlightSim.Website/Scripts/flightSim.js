@@ -1,4 +1,5 @@
-var winObj, transConstant, sizeConstant, target, timer;
+var winObj, transConstant, sizeConstant, target, timer, initialRadius, realTargetSize, userDist, atmosVis, closingSpeed, diameter;
+
 
 function getRandomX(){
 	var randomInt = Math.random(),
@@ -14,8 +15,18 @@ function getRandomY(){
 	return Math.floor(randomInt * winHeight);
 }
 
-function getNewValue(time, constant){
-	return (time * constant);
+function getRadius(time)
+{
+    // Radius = (b * x_0/(R - (v *t)))
+
+    return ((realTargetSize * userDist) / (atmosVis - (closingSpeed * time)));
+}
+
+function getOpacity(newRadius)
+{
+    // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
+
+    return Math.exp(-2.996 * (initialRadius / newRadius));
 }
 
 function setPosition(target)
@@ -28,27 +39,30 @@ function setPosition(target)
 	target.css('left', randX);
 }
 
-function updateTransparency()
+function updateTransparency(newRadius)
 {
-    var transValue = getNewValue(timer, transparency);
+    var transValue = getOpacity(newRadius);
 
     target.css("opacity", transValue);
 }
 
 function updateSize()
 {
-    var sizeValue = getNewValue(timer, size);
+    var radius = getRadius(timer),
+        sizeValue = (radius * 2);
 
     target.height(sizeValue);
     target.width(sizeValue);
+
+    return radius;
 }
 
 function updateObject()
 {
     timer++;
 
-    updateTransparency();
-    updateSize();
+    var newRadius = updateSize();
+    //updateTransparency(newRadius);
 }
 
 $(document).ready(function()
@@ -62,17 +76,25 @@ $(document).ready(function()
     // Set timer
 	if ($("#experiment").length)
 	{
+	    timer = 0;
 	    transparency = $('#TransparencyConstant').val();
 	    size = $('#SizeConstant').val();
 	    target = $("#template");
+	    realTargetSize = $("#RealTargetSize").val();
+	    userDist = $("#UserDistance").val();
+	    atmosVis = $("#AtmosphericVisibility").val();
+	    initialRadius = $("#InitialRadius").val();
+	    closingSpeed = $("#ClosingSpeed").val();
+	    diameter = initialRadius * 2;
 
+        // Setup initial target
+	    target.css("height", diameter);
+	    target.css("width", diameter);
 	    setPosition(target);
 	    target.show();
 
-	    timer = 0;
-
 	    setPosition(target);
 
-	    setInterval(updateObject, 10);
+	    setInterval(updateObject, 1);
 	}
 });

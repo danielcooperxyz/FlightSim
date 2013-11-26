@@ -8,5 +8,10 @@
 <div id="experiment">
     @Html.HiddenFor(m => m.TransparencyConstant)
     @Html.HiddenFor(m => m.SizeConstant)
+    @Html.HiddenFor(m => m.AtmosphericVisibility)
+    @Html.HiddenFor(m => m.InitialRadius)
+    @Html.HiddenFor(m => m.UserDistance)
+    @Html.HiddenFor(m => m.RealTargetSize)
+    <input id="ClosingSpeed" type="hidden" value="300"/>
     <div id="template" hidden="hidden" class="circle"></div>
 </div>

@@ -60,7 +60,6 @@ C:\Users\Dan\Source\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Webs
 C:\Users\Dan\Source\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\bin\System.Web.WebPages.Razor.xml
 C:\Users\Dan\Source\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\obj\Debug\FlightSim.Website.dll
 C:\Users\Dan\Source\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\obj\Debug\FlightSim.Website.pdb
-C:\Users\Dan\Source\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\obj\Debug\FlightSim.Website.csprojResolveAssemblyReference.cache
 C:\Users\DanielC\Desktop\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\bin\System.Net.Http.dll
 C:\Users\DanielC\Desktop\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\bin\System.Net.Http.WebRequest.dll
 C:\Users\DanielC\Desktop\FlightSim\FlightSim.Website\FlightSim.Website\FlightSim.Website\bin\System.Net.Http.xml
