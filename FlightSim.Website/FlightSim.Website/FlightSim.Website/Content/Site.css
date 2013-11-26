@@ -145,8 +145,10 @@ a {
     -webkit-border-radius: 25px; 
     -moz-border-radius: 25px; 
     border-radius: 25px;
+    background-color:#7F7F7F;
     border-color:#7F7F7F;
     border-width:2px;
     position:absolute;
     border-style:solid;
+    opacity: 0;
 }

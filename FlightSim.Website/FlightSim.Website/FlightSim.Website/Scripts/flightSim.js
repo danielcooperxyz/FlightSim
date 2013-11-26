@@ -32,15 +32,15 @@ function updateTransparency()
 {
     var transValue = getNewValue(timer, transparency);
 
-    target.css("opacity", value);
+    target.css("opacity", transValue);
 }
 
 function updateSize()
 {
     var sizeValue = getNewValue(timer, size);
 
-    target.height(size);
-    target.width(size);
+    target.height(sizeValue);
+    target.width(sizeValue);
 }
 
 function updateObject()
@@ -62,8 +62,8 @@ $(document).ready(function()
     // Set timer
 	if ($("#experiment").length)
 	{
-	    transparency = $('#TransparencyConstant');
-	    size = $('#SizeConstant');
+	    transparency = $('#TransparencyConstant').val();
+	    size = $('#SizeConstant').val();
 	    target = $("#template");
 
 	    setPosition(target);
@@ -73,6 +73,6 @@ $(document).ready(function()
 
 	    setPosition(target);
 
-	    setInterval(updateObject, 1000);
+	    setInterval(updateObject, 10);
 	}
 });
