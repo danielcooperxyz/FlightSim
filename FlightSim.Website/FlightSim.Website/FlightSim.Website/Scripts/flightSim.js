@@ -26,7 +26,7 @@ function getOpacity(newRadius)
 {
     // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
 
-    return Math.exp(-2.996 * (initialRadius / newRadius));
+    return 1-Math.exp(-2.996 * (initialRadius / newRadius));
 }
 
 function setPosition(target)
@@ -41,15 +41,15 @@ function setPosition(target)
 
 function updateTransparency(newRadius)
 {
-    var transValue = getOpacity(newRadius);
+    var opacity = getOpacity(newRadius);
 
-    target.css("opacity", transValue);
+    target.css("opacity", 1 * opacity);
 }
 
 function updateSize()
 {
     var radius = getRadius(timer),
-        sizeValue = (radius * 2);
+        sizeValue = (radius * 200);
 
     target.height(sizeValue);
     target.width(sizeValue);
@@ -62,7 +62,10 @@ function updateObject()
     timer++;
 
     var newRadius = updateSize();
-    //updateTransparency(newRadius);
+
+    if (target.css("opacity") < 1) {
+        updateTransparency(newRadius);
+    }
 }
 
 $(document).ready(function()
@@ -77,14 +80,12 @@ $(document).ready(function()
 	if ($("#experiment").length)
 	{
 	    timer = 0;
-	    transparency = $('#TransparencyConstant').val();
-	    size = $('#SizeConstant').val();
 	    target = $("#template");
-	    realTargetSize = $("#RealTargetSize").val();
-	    userDist = $("#UserDistance").val();
-	    atmosVis = $("#AtmosphericVisibility").val();
-	    initialRadius = $("#InitialRadius").val();
-	    closingSpeed = $("#ClosingSpeed").val();
+	    realTargetSize = parseInt($("#RealTargetSize").val());
+	    userDist = parseInt($("#UserDistance").val());
+	    atmosVis = parseInt($("#AtmosphericVisibility").val());
+	    initialRadius = parseInt($("#InitialRadius").val());
+	    closingSpeed = parseInt($("#ClosingSpeed").val());
 	    diameter = initialRadius * 2;
 
         // Setup initial target
@@ -95,6 +96,6 @@ $(document).ready(function()
 
 	    setPosition(target);
 
-	    setInterval(updateObject, 1);
+	    setInterval(updateObject, 1000);
 	}
 });

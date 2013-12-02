@@ -26,34 +26,33 @@ namespace FlightSim.Website.Controllers
 
         private ExperimentModel GetConfiguration(ExperimentModel model)
         {
-            string transparencyConfig = ConfigurationManager.AppSettings["TransparencyConstant"];
+            //string transparencyConfig = ConfigurationManager.AppSettings["TransparencyConstant"];
+            //float floatCast = 0;
 
-            float floatCast = 0;
-
-            if (!float.TryParse(transparencyConfig, out floatCast))
-            {
-                throw new InvalidCastException();
-            }
-            else
-            {
-                model.TransparencyConstant = floatCast;
-            }
+            //if (!float.TryParse(transparencyConfig, out floatCast))
+            //{
+            //    throw new InvalidCastException();
+            //}
+            //else
+            //{
+            //    model.TransparencyConstant = floatCast;
+            //}
 
 
-            string sizeConfig = ConfigurationManager.AppSettings["SizeConstant"];
-            floatCast = 0;
+            //string sizeConfig = ConfigurationManager.AppSettings["SizeConstant"];
+            //floatCast = 0;
 
-            if (!float.TryParse(sizeConfig, out floatCast))
-            {
-                throw new InvalidCastException();
-            }
-            else
-            {
-                model.SizeConstant = floatCast;
-            }
+            //if (!float.TryParse(sizeConfig, out floatCast))
+            //{
+            //    throw new InvalidCastException();
+            //}
+            //else
+            //{
+            //    model.SizeConstant = floatCast;
+            //}
 
             string initialRad = ConfigurationManager.AppSettings["InitialRadius"];
-            floatCast = 0;
+            float floatCast = 0;
 
             if (!float.TryParse(initialRad, out floatCast))
             {

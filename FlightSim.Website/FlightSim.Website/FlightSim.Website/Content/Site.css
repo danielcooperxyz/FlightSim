@@ -142,9 +142,9 @@ a {
 .circle { 
     width: 2em; 
     height: 2em; 
-    -webkit-border-radius: 25px; 
-    -moz-border-radius: 25px; 
-    border-radius: 25px;
+    -webkit-border-radius: 50%; 
+    -moz-border-radius: 50%; 
+    border-radius: 50%;
     background-color:#7F7F7F;
     border-color:#7F7F7F;
     border-width:2px;
