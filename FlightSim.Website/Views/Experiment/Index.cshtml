@@ -1,0 +1,18 @@
+﻿@model FlightSim.Website.Models.ExperimentModel
+@{
+    ViewBag.Title = "Flight Sim";
+}
+
+<script type="text/javascript" src="~/Scripts/flightSim.js"></script>
+
+<div id="experiment">
+    @Html.HiddenFor(m => m.AtmosphericVisibility)
+    @Html.HiddenFor(m => m.InitialRadius)
+    @Html.HiddenFor(m => m.UserDistance)
+    @Html.HiddenFor(m => m.RealTargetSize)
+    <input id="ClosingSpeed" type="hidden" value="300"/>
+    <div id="template" hidden="hidden" class="circle"></div>
+    <input id="timeLog" type="hidden" value="" />
+    <input id="radiusLog" type="hidden" value=""/>
+    <input id="opacityLog" type="hidden" value=""/>
+</div>
