@@ -37,6 +37,16 @@ namespace FlightSim.Framework
         /// Stores the value for real target size
         /// </summary>
         private int realTargetSize;
+
+        /// <summary>
+        /// Stores the values to use for the target radiuses
+        /// </summary>
+        private float[] targetRadiuses;
+
+        /// <summary>
+        /// Stores the values to use for the target opacities
+        /// </summary>
+        private float[] targetOpacities;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="Experiment"/> class
@@ -122,6 +132,38 @@ namespace FlightSim.Framework
             set
             {
                 this.realTargetSize = value;
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the target radiuses
+        /// </summary>
+        public float[] TargetRadiuses
+        {
+            get
+            {
+                return this.targetRadiuses;
+            }
+
+            set
+            {
+                this.targetRadiuses = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the target opacities
+        /// </summary>
+        public float[] TargetOpacities
+        {
+            get
+            {
+                return this.targetOpacities;
+            }
+
+            set
+            {
+                this.targetOpacities = value;
             }
         }
     }
