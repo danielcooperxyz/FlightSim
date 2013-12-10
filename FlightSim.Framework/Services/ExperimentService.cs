@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace FlightSim.Framework
+namespace FlightSim.Framework.Services
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +12,7 @@ namespace FlightSim.Framework
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using FlightSim.Framework.Entities;
 
     /// <summary>
     /// The experiment service
@@ -24,7 +25,11 @@ namespace FlightSim.Framework
         /// <returns>The new experiment object</returns>
         public static Experiment CreateExperiment()
         {
-            return new Experiment();
+            Experiment newExperiment = new Experiment();
+
+            newExperiment.AtmosphericVisibilty = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.AtmosphericVisibility.ToString());
+
+            return newExperiment;
         }
     }
 }

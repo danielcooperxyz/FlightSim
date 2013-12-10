@@ -12,7 +12,8 @@ namespace FlightSim.Website.Controllers
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    using FlightSim.Framework;
+    using FlightSim.Framework.Entities;
+    using FlightSim.Framework.Services;
     using FlightSim.Website.Models;
 
     /// <summary>

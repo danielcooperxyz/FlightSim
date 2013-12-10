@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace FlightSim.Framework
+namespace FlightSim.Framework.Entities
 {
     using System;
 
