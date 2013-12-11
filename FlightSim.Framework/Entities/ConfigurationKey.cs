@@ -39,6 +39,11 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// The configuration key to enable or disable moving targets
         /// </summary>
-        MovingTargets
+        MovingTargets,
+
+        /// <summary>
+        /// The configuration key for the closing speed of the target
+        /// </summary>
+        ClosingSpeed
     }
 }

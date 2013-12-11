@@ -29,7 +29,7 @@ namespace FlightSim.Website.Controllers
         {
             ExperimentModel model = new ExperimentModel();
 
-            Experiment exp = ExperimentService.CreateExperiment();
+            Experiment exp = ExperimentService.InitialiseExperiment();
 
             return this.View(model);
         }

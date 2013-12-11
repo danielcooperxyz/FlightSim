@@ -35,6 +35,9 @@ function setPosition(target)
 	randX = getRandomX(),
 	randY = getRandomY();
 
+	$('#x-position').val(randX);
+	$('#y-position').val(randY);
+
 	target.css('top', randY);
 	target.css('left', randX);
 }
@@ -81,10 +84,25 @@ $(document).ready(function()
 	object = $('')
 
 	winObj = $(window);
+
 	
-    // Set timer
+    //Set timer
 	if ($("#experiment").length)
 	{
+	    //window.open("http://mantis/Flightsim/", "popUpWindow", "width:600, height: 600, toolbar:no");
+	
+	    var start = new Date().getTime(),
+        elapsed = '0.0',
+        timer = window.setInterval(function () {
+	        var time = new Date().getTime() - start;
+
+	        elapsed = Math.floor(time / 100) / 10;
+	        if (Math.round(elapsed) == elapsed) { elapsed += '.0'; }
+
+	        document.title = elapsed;
+
+	    }, 100);
+
 	    timer = 0;
 	    target = $("#template");
         realTargetSize = parseInt($("#RealTargetSize").val());

@@ -7,6 +7,7 @@
 namespace FlightSim.Framework.Entities
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The experiment class
@@ -41,18 +42,34 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Stores the values to use for the target radiuses
         /// </summary>
-        private float[] targetRadiuses;
+        private List<float> targetRadiuses;
 
         /// <summary>
         /// Stores the values to use for the target opacities
         /// </summary>
-        private float[] targetOpacities;
-        
+        private List<float> targetOpacities;
+
+        /// <summary>
+        /// Stores the value to use for the x position of the target
+        /// </summary>
+        private int x_Position;
+
+        /// <summary>
+        /// Stores the value to use for the y position of the target
+        /// </summary>
+        private int y_Position;
+
+        /// <summary>
+        /// Stores the value to determine whether the target should move or not
+        /// </summary>
+        private bool movingTarget;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Experiment"/> class
         /// </summary>
         public Experiment()
         {
+
         }
 
         /// <summary>
@@ -138,7 +155,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the target radiuses
         /// </summary>
-        public float[] TargetRadiuses
+        public List<float> TargetRadiuses
         {
             get
             {
@@ -154,7 +171,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the target opacities
         /// </summary>
-        public float[] TargetOpacities
+        public List<float> TargetOpacities
         {
             get
             {
@@ -165,6 +182,71 @@ namespace FlightSim.Framework.Entities
             {
                 this.targetOpacities = value;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the x position value
+        /// </summary>
+        public int XPosition
+        {
+            get
+            {
+                return this.x_Position;
+            }
+
+            set
+            {
+                this.x_Position = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the y position value
+        /// </summary>
+        public int YPosition
+        {
+            get
+            {
+                return this.y_Position;
+            }
+
+            set
+            {
+                this.y_Position = value;
+            }
+        }
+
+        /// <summary>
+        /// Stores the value for moving target
+        /// </summary>
+        public bool MovingTarget
+        {
+            get
+            {
+                return this.movingTarget;
+            }
+
+            set
+            {
+                this.movingTarget = value;
+            }
+        }
+
+        /// <summary>
+        /// Generate a new radius based on the time passed
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public float GenerateRadius(int time)
+        {
+            // Radius = (b * x_0/(R - (v *t)))
+            return ((this.realTargetSize * this.userDistance) / (this.atmosphericVisibility - (this.closingSpeed * time));
+        }
+
+        public double GenerateOpacity(float radius, int time)
+        {
+            // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
+            return Convert.ToSingle(1 - (Math.Exp(-2.996 * (this.initialTargetSize / radius))));
         }
     }
 }
