@@ -28,10 +28,15 @@ namespace FlightSim.Website.Controllers
         public ActionResult Index()
         {
             ExperimentModel model = new ExperimentModel();
-
-            Experiment exp = ExperimentService.InitialiseExperiment();
+            
+            model.Experiment = ExperimentService.InitialiseExperiment();
 
             return this.View(model);
+        }
+
+        public void Save(float reationTime)
+        {
+ 
         }
     }
 }

@@ -19,6 +19,7 @@ namespace FlightSim.Framework.Services
     /// </summary>
     public class ExperimentService
     {
+        //private ExperimentRepository experimentRepository;
         /// <summary>
         /// Create a new experiment to use on the website
         /// </summary>
@@ -41,7 +42,6 @@ namespace FlightSim.Framework.Services
 
                 newExperiment.TargetOpacities.Add(newExperiment.GenerateOpacity(newExperiment.TargetRadiuses[i], i));
             }
-
 
             return newExperiment;
         }

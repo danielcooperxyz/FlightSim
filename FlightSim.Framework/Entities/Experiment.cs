@@ -15,6 +15,11 @@ namespace FlightSim.Framework.Entities
     public class Experiment
     {
         /// <summary>
+        /// Stores the id of the experiment
+        /// </summary>
+        private Guid id;
+
+        /// <summary>
         /// Stores the value for atmospheric visibility
         /// </summary>
         private int atmosphericVisibility;
@@ -65,6 +70,11 @@ namespace FlightSim.Framework.Entities
         private bool movingTarget;
 
         /// <summary>
+        /// Stores the value for the user's reaction time
+        /// </summary>
+        private float reactionTime;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Experiment"/> class
         /// </summary>
         public Experiment()
@@ -72,6 +82,21 @@ namespace FlightSim.Framework.Entities
 
         }
 
+        /// <summary>
+        /// Gets or sets the value for the experiment id
+        /// </summary>
+        public Guid Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.id = value;
+            }
+        }
         /// <summary>
         /// Gets or sets the value for atmospheric visibility
         /// </summary>
@@ -217,7 +242,7 @@ namespace FlightSim.Framework.Entities
         }
 
         /// <summary>
-        /// Stores the value for moving target
+        /// Gets or sets the value for moving target
         /// </summary>
         public bool MovingTarget
         {
@@ -233,17 +258,39 @@ namespace FlightSim.Framework.Entities
         }
 
         /// <summary>
+        /// Gets or sets the value for the user's reaction time
+        /// </summary>
+        public float ReactionTime
+        {
+            get
+            {
+                return this.reactionTime;
+            }
+
+            set
+            {
+                this.reactionTime = value;
+            }
+        }
+
+        /// <summary>
         /// Generate a new radius based on the time passed
         /// </summary>
-        /// <param name="i"></param>
-        /// <returns></returns>
+        /// <param name="time">The time value</param>
+        /// <returns>The generated radius</returns>
         public float GenerateRadius(int time)
         {
             // Radius = (b * x_0/(R - (v *t)))
-            return ((this.realTargetSize * this.userDistance) / (this.atmosphericVisibility - (this.closingSpeed * time));
+            return ((this.realTargetSize * this.userDistance) / (this.atmosphericVisibility - (this.closingSpeed * time)));
         }
 
-        public double GenerateOpacity(float radius, int time)
+        /// <summary>
+        /// Generate a new opacity based on the new radius and time passed.
+        /// </summary>
+        /// <param name="radius">The new radius</param>
+        /// <param name="time">The time value</param>
+        /// <returns>The generated opacity</returns>
+        public float GenerateOpacity(float radius, int time)
         {
             // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
             return Convert.ToSingle(1 - (Math.Exp(-2.996 * (this.initialTargetSize / radius))));

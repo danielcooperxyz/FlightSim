@@ -6,6 +6,7 @@
 
 namespace FlightSim.Website.Models
 {
+    using FlightSim.Framework.Entities;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -17,128 +18,23 @@ namespace FlightSim.Website.Models
     public class ExperimentModel
     {
         /// <summary>
-        /// Stores the value for the transparency constant
+        /// The experiment object
         /// </summary>
-        private float transparencyConstant;
+        private Experiment experiment;
 
         /// <summary>
-        /// Stores the value for the size constant
+        /// Get or set the experiment object
         /// </summary>
-        private float sizeConstant;
-
-        /// <summary>
-        /// Stores the value for the initial radius
-        /// </summary>
-        private float initialRadius;
-
-        /// <summary>
-        /// Stores the value for the atmospheric visibility
-        /// </summary>
-        private int atmosphericVisibility;
-
-        /// <summary>
-        /// Stores the value for the user distance
-        /// </summary>
-        private int userDistance;
-
-        /// <summary>
-        /// Stores the value for the real target size
-        /// </summary>
-        private int realTargetSize;
-
-        /// <summary>
-        /// Gets or sets the size constant
-        /// </summary>
-        public float SizeConstant
+        public Experiment Experiment
         {
             get
             {
-                return this.sizeConstant;
+                return this.experiment;
             }
 
             set
             {
-                this.sizeConstant = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the transparency constant
-        /// </summary>
-        public float TransparencyConstant
-        {
-            get
-            {
-                return this.transparencyConstant;
-            }
-
-            set
-            {
-                this.transparencyConstant = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the atmospheric visibility
-        /// </summary>
-        public int AtmosphericVisibility
-        {
-            get
-            {
-                return this.atmosphericVisibility;
-            }
-
-            set
-            {
-                this.atmosphericVisibility = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the initial radius
-        /// </summary>
-        public float InitialRadius
-        {
-            get
-            {
-                return this.initialRadius;
-            }
-
-            set
-            {
-                this.initialRadius = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the user distance
-        /// </summary>
-        public int UserDistance
-        {
-            get
-            {
-                return this.userDistance;
-            }
-
-            set
-            {
-                this.userDistance = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the real target size
-        /// </summary>
-        public int RealTargetSize
-        {
-            get
-            {
-                return this.realTargetSize;
-            }
-
-            set
-            {
-                this.realTargetSize = value;
+                this.experiment = value;
             }
         }
     }

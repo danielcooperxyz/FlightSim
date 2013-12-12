@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSim.Website", "Flight
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flightsim.Framework", "Flightsim.Framework\Flightsim.Framework.csproj", "{1D02C484-39B0-499F-B9A2-A410EC67443E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSim.DataAccess", "FlightSim.DataAccess\FlightSim.DataAccess.csproj", "{19CAF4B0-9D98-4A4C-B588-E64A1F2268A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1D02C484-39B0-499F-B9A2-A410EC67443E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D02C484-39B0-499F-B9A2-A410EC67443E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D02C484-39B0-499F-B9A2-A410EC67443E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19CAF4B0-9D98-4A4C-B588-E64A1F2268A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19CAF4B0-9D98-4A4C-B588-E64A1F2268A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19CAF4B0-9D98-4A4C-B588-E64A1F2268A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19CAF4B0-9D98-4A4C-B588-E64A1F2268A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

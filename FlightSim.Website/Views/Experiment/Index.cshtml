@@ -6,11 +6,14 @@
 <script type="text/javascript" src="~/Scripts/flightSim.js"></script>
 
 <div id="experiment">
-    @Html.HiddenFor(m => m.AtmosphericVisibility)
-    @Html.HiddenFor(m => m.InitialRadius)
-    @Html.HiddenFor(m => m.UserDistance)
-    @Html.HiddenFor(m => m.RealTargetSize)
-    <input id="ClosingSpeed" type="hidden" value="300"/>
+    @Html.HiddenFor(m => m.Experiment.TargetRadiuses)
+    @Html.HiddenFor(m => m.Experiment.TargetOpacities)
+    @Html.HiddenFor(m => m.Experiment.XPosition)
+    @Html.HiddenFor(m => m.Experiment.YPosition)
+
+    <form id="experimentResults" action="/Experiment/Save" method="post">
+        @Html.HiddenFor(m => m.Experiment.ReactionTime)
+    </form>
     <div id="template" hidden="hidden" class="circle"></div>
     <input id="timeLog" type="hidden" value="" />
     <input id="radiusLog" type="hidden" value=""/>
