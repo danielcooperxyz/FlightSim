@@ -13,18 +13,33 @@ namespace FlightSim.Framework.Services
     using System.Text;
     using System.Threading.Tasks;
     using FlightSim.Framework.Entities;
+    using FlightSim.Framework.Repositories;
 
     /// <summary>
     /// The experiment service
     /// </summary>
-    public class ExperimentService
+    public class ExperimentService : IExperimentService
     {
-        //private ExperimentRepository experimentRepository;
+        public ExperimentService(IExperimentRepository experimentRepository)
+        {
+            if (experimentRepository == null)
+            {
+                throw new ArgumentNullException("Experiment Repository");
+            }
+
+            this.experimentRepository = experimentRepository;
+        }
+
+        /// <summary>
+        /// The experiment repository implementation 
+        /// </summary>
+        private IExperimentRepository experimentRepository;
+
         /// <summary>
         /// Create a new experiment to use on the website
         /// </summary>
         /// <returns>The new experiment object</returns>
-        public static Experiment InitialiseExperiment()
+        public Experiment InitialiseExperiment()
         {
             Experiment newExperiment = new Experiment();
 
@@ -36,12 +51,17 @@ namespace FlightSim.Framework.Services
 
             newExperiment.MovingTarget = ConfigurationService.GetConfigurationValue<bool>(ConfigurationKey.MovingTargets);
 
+            newExperiment.TargetRadiuses = new List<float>();
+            newExperiment.TargetOpacities = new List<float>();
+
             for (int i = 0; i < 30; i++)
             {
                 newExperiment.TargetRadiuses.Add(newExperiment.GenerateRadius(i));
 
                 newExperiment.TargetOpacities.Add(newExperiment.GenerateOpacity(newExperiment.TargetRadiuses[i], i));
             }
+
+            this.experimentRepository.Save(newExperiment);
 
             return newExperiment;
         }

@@ -2,13 +2,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    var experimentUrl = '@Url.Action("Index", "Experiment")'
+</script>
+
 <script type="text/javascript" src="~/Scripts/flightSim.js"></script>
 
-<div id="logo" class="centered"></div>
+<div id="homePage">
+    <div id="logo" class="centered"></div>
 
-<div id="titleContainer" class="mainText">
-    <div id="title">Level 3 Aviation Engineering Experimental Research</div>
+    <div id="titleContainer" class="mainText">
+        <div id="title">Level 3 Aviation Engineering Experimental Research</div>
+    </div>
+
+    <!-- Form to set the closing speed, pass to the experiment controller -->
+    <a id="startButton" href="#"><div id="start" class="centered button">START</div></a>
 </div>
-
-<!-- Form to set the closing speed, pass to the experiment controller -->
-<a href=@Url.Action("Index", "Experiment")><div id ="start" class="centered button" >START</div></a>

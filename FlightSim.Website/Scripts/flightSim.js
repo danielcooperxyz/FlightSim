@@ -85,6 +85,15 @@ $(document).ready(function()
 
 	winObj = $(window);
 
+	if ($("#homePage").length > 0)
+	{
+	    $("#startButton").click(function ()
+	    {
+	        window.open(experimentUrl, "popUpWindow", "width:600, height: 600, toolbar:no");
+	    });
+	}
+
+
 	
     //Set timer
 	if ($("#experiment").length)

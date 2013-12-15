@@ -21,6 +21,18 @@ namespace FlightSim.Website.Controllers
     /// </summary>
     public class ExperimentController : Controller
     {
+        private IExperimentService experimentService;
+
+        public ExperimentController(IExperimentService experimentService)
+        {
+            if (experimentService == null)
+            {
+                throw new ArgumentNullException("Experiment Service");
+            }
+
+            this.experimentService = experimentService;
+        }
+
         /// <summary>
         /// GET: /Experiment/
         /// </summary>
@@ -29,7 +41,7 @@ namespace FlightSim.Website.Controllers
         {
             ExperimentModel model = new ExperimentModel();
             
-            model.Experiment = ExperimentService.InitialiseExperiment();
+            model.Experiment = this.experimentService.InitialiseExperiment();
 
             return this.View(model);
         }

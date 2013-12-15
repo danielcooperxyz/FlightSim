@@ -1,17 +1,23 @@
-﻿using FlightSim.Framework.Entities;
-using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="ExperimentRepository.cs" owner="Daniel Cooper">
+// Copyright (c) Daniel Cooper. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FlightSim.DataAccess
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using FlightSim.Framework.Entities;
+    using FlightSim.Framework.Repositories;
+    using NHibernate;
+
     /// <summary>
     /// The experiment repository
     /// </summary>
-    public class ExperimentRepository
+    public class ExperimentRepository : IExperimentRepository
     {
         /// <summary>
         /// The session object
@@ -22,7 +28,7 @@ namespace FlightSim.DataAccess
         /// Initialize a new instance of the <see cref="ExperimentRepository"/> class
         /// </summary>
         /// <param name="session"></param>
-        public ExperimentRepository(ISession session)
+        public ExperimentRepository(ISession session) 
         {
             if (session == null)
             {
