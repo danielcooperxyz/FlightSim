@@ -6,13 +6,10 @@
 
 namespace FlightSim.Framework.Services
 {
-    using FlightSim.Framework.Entities;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Configuration;
-    using System.Linq;
-    using System.Text;
+    using FlightSim.Framework.Entities;
 
     /// <summary>
     /// The configuration service

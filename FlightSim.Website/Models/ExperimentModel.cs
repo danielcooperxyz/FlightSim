@@ -7,10 +7,6 @@
 namespace FlightSim.Website.Models
 {
     using FlightSim.Framework.Entities;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
 
     /// <summary>
     /// The experiment model
@@ -23,7 +19,7 @@ namespace FlightSim.Website.Models
         private Experiment experiment;
 
         /// <summary>
-        /// Get or set the experiment object
+        /// Gets or sets the experiment object
         /// </summary>
         public Experiment Experiment
         {

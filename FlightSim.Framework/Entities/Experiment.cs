@@ -57,12 +57,12 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Stores the value to use for the x position of the target
         /// </summary>
-        private int x_Position;
+        private float xPosition;
 
         /// <summary>
         /// Stores the value to use for the y position of the target
         /// </summary>
-        private int y_Position;
+        private float yPosition;
 
         /// <summary>
         /// Stores the value to determine whether the target should move or not
@@ -79,13 +79,12 @@ namespace FlightSim.Framework.Entities
         /// </summary>
         public Experiment()
         {
-
         }
 
         /// <summary>
         /// Gets or sets the value for the experiment id
         /// </summary>
-        public Guid Id
+        public virtual Guid Id
         {
             get
             {
@@ -97,10 +96,11 @@ namespace FlightSim.Framework.Entities
                 this.id = value;
             }
         }
+
         /// <summary>
         /// Gets or sets the value for atmospheric visibility
         /// </summary>
-        public int AtmosphericVisibilty
+        public virtual int AtmosphericVisibilty
         {
             get
             {
@@ -116,7 +116,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for user distance
         /// </summary>
-        public int UserDistance
+        public virtual int UserDistance
         {
             get
             {
@@ -132,7 +132,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for closing speed
         /// </summary>
-        public int ClosingSpeed
+        public virtual int ClosingSpeed
         {
             get
             {
@@ -148,7 +148,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for initial target size
         /// </summary>
-        public float InitialTargetSize
+        public virtual float InitialTargetSize
         {
             get
             {
@@ -164,7 +164,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the real target size
         /// </summary>
-        public int RealTargetSize
+        public virtual int RealTargetSize
         {
             get
             {
@@ -180,7 +180,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the target radiuses
         /// </summary>
-        public List<float> TargetRadiuses
+        public virtual List<float> TargetRadiuses
         {
             get
             {
@@ -196,7 +196,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the target opacities
         /// </summary>
-        public List<float> TargetOpacities
+        public virtual List<float> TargetOpacities
         {
             get
             {
@@ -212,39 +212,39 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the x position value
         /// </summary>
-        public int XPosition
+        public virtual float XPosition
         {
             get
             {
-                return this.x_Position;
+                return this.xPosition;
             }
 
             set
             {
-                this.x_Position = value;
+                this.xPosition = value;
             }
         }
 
         /// <summary>
         /// Gets or sets the y position value
         /// </summary>
-        public int YPosition
+        public virtual float YPosition
         {
             get
             {
-                return this.y_Position;
+                return this.yPosition;
             }
 
             set
             {
-                this.y_Position = value;
+                this.yPosition = value;
             }
         }
 
         /// <summary>
-        /// Gets or sets the value for moving target
+        /// Gets or sets a value indicating whether targets move
         /// </summary>
-        public bool MovingTarget
+        public virtual bool MovingTargets
         {
             get
             {
@@ -260,7 +260,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the user's reaction time
         /// </summary>
-        public float ReactionTime
+        public virtual float ReactionTime
         {
             get
             {
@@ -278,10 +278,10 @@ namespace FlightSim.Framework.Entities
         /// </summary>
         /// <param name="time">The time value</param>
         /// <returns>The generated radius</returns>
-        public float GenerateRadius(int time)
+        public virtual float GenerateRadius(int time)
         {
             // Radius = (b * x_0/(R - (v *t)))
-            return ((this.realTargetSize * this.userDistance) / (this.atmosphericVisibility - (this.closingSpeed * time)));
+            return (this.realTargetSize * this.userDistance) / (this.atmosphericVisibility - (this.closingSpeed * time));
         }
 
         /// <summary>
@@ -290,10 +290,10 @@ namespace FlightSim.Framework.Entities
         /// <param name="radius">The new radius</param>
         /// <param name="time">The time value</param>
         /// <returns>The generated opacity</returns>
-        public float GenerateOpacity(float radius, int time)
+        public virtual float GenerateOpacity(float radius, int time)
         {
             // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
-            return Convert.ToSingle(1 - (Math.Exp(-2.996 * (this.initialTargetSize / radius))));
+            return Convert.ToSingle(1 - Math.Exp(-2.996 * this.initialTargetSize / radius));
         }
     }
 }

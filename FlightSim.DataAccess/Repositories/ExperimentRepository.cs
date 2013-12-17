@@ -25,9 +25,9 @@ namespace FlightSim.DataAccess
         private ISession session;
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="ExperimentRepository"/> class
+        /// Initializes a new instance of the <see cref="ExperimentRepository"/> class
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="session">The session to use</param>
         public ExperimentRepository(ISession session) 
         {
             if (session == null)
@@ -45,7 +45,7 @@ namespace FlightSim.DataAccess
         /// <returns>The experiment object</returns>
         public Experiment Get(Guid id)
         {
-            return session.QueryOver<Experiment>()
+            return this.session.QueryOver<Experiment>()
                 .Where(e => e.Id == id)
                 .List().FirstOrDefault();
         }
@@ -56,7 +56,7 @@ namespace FlightSim.DataAccess
         /// <param name="experiment">The experiment object to save</param>
         public void Save(Experiment experiment)
         {
-            session.Save(experiment);
+            this.session.Save(experiment);
         }
     }
 }

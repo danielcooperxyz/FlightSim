@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSim.Website", "FlightSim.Website\FlightSim.Website.csproj", "{2E474CFB-C3E1-474D-9100-BD2E06297F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flightsim.Framework", "Flightsim.Framework\Flightsim.Framework.csproj", "{1D02C484-39B0-499F-B9A2-A410EC67443E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSim.Framework", "Flightsim.Framework\FlightSim.Framework.csproj", "{1D02C484-39B0-499F-B9A2-A410EC67443E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSim.DataAccess", "FlightSim.DataAccess\FlightSim.DataAccess.csproj", "{19CAF4B0-9D98-4A4C-B588-E64A1F2268A3}"
 EndProject

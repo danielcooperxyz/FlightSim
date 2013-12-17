@@ -20,6 +20,15 @@ namespace FlightSim.Framework.Services
     /// </summary>
     public class ExperimentService : IExperimentService
     {
+        /// <summary>
+        /// The experiment repository implementation 
+        /// </summary>
+        private IExperimentRepository experimentRepository;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExperimentService"/> class
+        /// </summary>
+        /// <param name="experimentRepository">The experiment repository to use</param>
         public ExperimentService(IExperimentRepository experimentRepository)
         {
             if (experimentRepository == null)
@@ -30,15 +39,7 @@ namespace FlightSim.Framework.Services
             this.experimentRepository = experimentRepository;
         }
 
-        /// <summary>
-        /// The experiment repository implementation 
-        /// </summary>
-        private IExperimentRepository experimentRepository;
-
-        /// <summary>
-        /// Create a new experiment to use on the website
-        /// </summary>
-        /// <returns>The new experiment object</returns>
+        /// <inheritdoc />
         public Experiment InitialiseExperiment()
         {
             Experiment newExperiment = new Experiment();
@@ -49,7 +50,7 @@ namespace FlightSim.Framework.Services
             newExperiment.RealTargetSize = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.RealTargetSize);
             newExperiment.ClosingSpeed = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.ClosingSpeed);
 
-            newExperiment.MovingTarget = ConfigurationService.GetConfigurationValue<bool>(ConfigurationKey.MovingTargets);
+            newExperiment.MovingTargets = ConfigurationService.GetConfigurationValue<bool>(ConfigurationKey.MovingTargets);
 
             newExperiment.TargetRadiuses = new List<float>();
             newExperiment.TargetOpacities = new List<float>();
@@ -64,6 +65,18 @@ namespace FlightSim.Framework.Services
             this.experimentRepository.Save(newExperiment);
 
             return newExperiment;
+        }
+
+        /// <inheritdoc />
+        public Experiment Get(Guid id)
+        {
+            return this.experimentRepository.Get(id);
+        }
+
+        /// <inheritdoc />
+        public void Save(Experiment experimentToSave)
+        {
+            this.experimentRepository.Save(experimentToSave);
         }
     }
 }
