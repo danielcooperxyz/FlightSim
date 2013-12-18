@@ -57,6 +57,7 @@ namespace FlightSim.DataAccess
         public void Save(Experiment experiment)
         {
             this.session.Save(experiment);
+            this.session.Flush();
         }
     }
 }

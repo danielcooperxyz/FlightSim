@@ -88,7 +88,7 @@ namespace FlightSim.DataAccess
 
                 configuration.DataBaseIntegration(x =>
                 {
-                    x.Dialect<MsSql2012Dialect>();
+                    x.Dialect<MsSql2008Dialect>();
                     x.ConnectionStringName = "db";
                 });
 

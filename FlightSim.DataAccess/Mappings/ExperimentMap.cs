@@ -20,10 +20,11 @@ namespace FlightSim.DataAccess.Mappings
         /// </summary>
         public ExperimentMap()
         {
-            this.Schema("dbo");
             this.Table("Experiment");
+
             this.Id(e => e.Id);
-            this.Property(e => e.AtmosphericVisibilty, m => { m.Type<Int32Type>(); });
+
+            this.Property(e => e.AtmosphericVisibility, m => { m.Type<Int32Type>(); });
             this.Property(e => e.UserDistance, m => { m.Type<Int32Type>(); });
             this.Property(e => e.ClosingSpeed, m => { m.Type<Int32Type>(); });
             this.Property(e => e.InitialTargetSize, m => { m.Type<DoubleType>(); });

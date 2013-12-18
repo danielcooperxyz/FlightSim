@@ -44,7 +44,8 @@ namespace FlightSim.Framework.Services
         {
             Experiment newExperiment = new Experiment();
 
-            newExperiment.AtmosphericVisibilty = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.AtmosphericVisibility);
+            newExperiment.Id = Guid.NewGuid();
+            newExperiment.AtmosphericVisibility = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.AtmosphericVisibility);
             newExperiment.UserDistance = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.UserDistance);
             newExperiment.InitialTargetSize = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.InitialTargetSize);
             newExperiment.RealTargetSize = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.RealTargetSize);

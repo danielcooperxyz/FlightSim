@@ -100,7 +100,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for atmospheric visibility
         /// </summary>
-        public virtual int AtmosphericVisibilty
+        public virtual int AtmosphericVisibility
         {
             get
             {
