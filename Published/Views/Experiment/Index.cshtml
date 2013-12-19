@@ -1,0 +1,27 @@
+﻿@model FlightSim.Website.Models.ExperimentModel
+@{
+    ViewBag.Title = "Flight Sim";
+}
+
+<script type="text/javascript" src="~/Scripts/flightSim.js"></script>
+
+<div id="experiment">   
+    @{
+        string radiuses = string.Join(",", Model.Experiment.RoundedRadiuses.ToArray());
+        <input id="Experiment_Radiuses" type="hidden" value="@radiuses" />
+    }    
+    @{
+        string opacities = string.Join(",", Model.Experiment.TargetOpacities.ToArray());
+        <input id="Experiment_Opacities" type="hidden" value="@opacities" />
+    }
+
+    @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
+    {
+        @Html.HiddenFor(m => m.Experiment.Id)
+        @Html.HiddenFor(m => m.Experiment.StartTime)
+        @Html.HiddenFor(m => m.Experiment.EndTime)
+        @Html.HiddenFor(m => m.Experiment.XPosition)
+        @Html.HiddenFor(m => m.Experiment.YPosition)
+    }
+    <div id="template" hidden="hidden" class="circle"></div>
+</div>

@@ -432,7 +432,9 @@ namespace FlightSim.Framework.Entities
         private double GenerateRadii(int time)
         {
             // Radius = (b * x_0/(R - (v *t)))
+
             double targetDistance = (this.atmosphericVisibility - (this.closingSpeed * time));
+
             double perspective = this.realTargetSize * this.userDistance;
 
             double radius = perspective / targetDistance;
