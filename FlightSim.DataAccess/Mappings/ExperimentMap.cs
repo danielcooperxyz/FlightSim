@@ -33,6 +33,8 @@ namespace FlightSim.DataAccess.Mappings
             this.Property(e => e.YPosition, m => { m.Type<DoubleType>(); });
             this.Property(e => e.MovingTargets, m => { m.Type<BooleanType>(); });
             this.Property(e => e.ReactionTime, m => { m.Type<DoubleType>(); });
+            this.Property(e => e.StartTime, m => { m.Type<DoubleType>(); });
+            this.Property(e => e.EndTime, m => { m.Type<DoubleType>(); });
         }
     }
 }

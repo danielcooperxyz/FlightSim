@@ -45,9 +45,11 @@ namespace FlightSim.DataAccess
         /// <returns>The experiment object</returns>
         public Experiment Get(Guid id)
         {
-            return this.session.QueryOver<Experiment>()
+            Experiment exp = this.session.QueryOver<Experiment>()
                 .Where(e => e.Id == id)
-                .List().FirstOrDefault();
+                .SingleOrDefault<Experiment>();
+
+            return exp;
         }
 
         /// <summary>

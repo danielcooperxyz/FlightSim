@@ -8,6 +8,7 @@ namespace FlightSim.Framework.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>
     /// The experiment class
@@ -37,7 +38,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Stores the value for initial target size
         /// </summary>
-        private float initialTargetSize;
+        private double initialTargetSize;
 
         /// <summary>
         /// Stores the value for real target size
@@ -45,40 +46,78 @@ namespace FlightSim.Framework.Entities
         private int realTargetSize;
 
         /// <summary>
-        /// Stores the values to use for the target radiuses
+        /// Stores the values to use for the calculated radiuses
         /// </summary>
-        private List<float> targetRadiuses;
+        private List<double> calculatedRadiuses;
 
         /// <summary>
-        /// Stores the values to use for the target opacities
+        /// Stores the values to use for the calculated opacities
         /// </summary>
-        private List<float> targetOpacities;
+        private List<double> calculatedOpacities;
 
         /// <summary>
         /// Stores the value to use for the x position of the target
         /// </summary>
-        private float xPosition;
+        private double xPosition;
 
         /// <summary>
         /// Stores the value to use for the y position of the target
         /// </summary>
-        private float yPosition;
+        private double yPosition;
 
         /// <summary>
         /// Stores the value to determine whether the target should move or not
         /// </summary>
         private bool movingTarget;
 
+        private double reactionTime;
         /// <summary>
-        /// Stores the value for the user's reaction time
+        /// Stores the rounded values for the radius and the number of seconds to animate between
         /// </summary>
-        private float reactionTime;
+        private List<KeyValuePair<int, int>> roundedRadiuses;
+
+        /// <summary>
+        /// Stores the values to use for the target opacities
+        /// </summary>
+        private List<double> targetOpacities;
+
+        /// <summary>
+        /// Stores the value for the start time of the experiment
+        /// </summary>
+        private double startTime;
+
+        /// <summary>
+        /// Stores the value for the end time of the experiment
+        /// </summary>
+        private double endTime;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Experiment"/> class
         /// </summary>
         public Experiment()
+        { }
+
+        public Experiment(Guid id,
+            int atmosVis,
+            int userDistance,
+            int closingSpeed,
+            double initTargetSize,
+            int realTargetSize,
+            double x,
+            double y,
+            bool movingTargets,
+            double reactionTime)
         {
+            this.Id = id;
+            this.AtmosphericVisibility = atmosVis;
+            this.UserDistance = userDistance;
+            this.ClosingSpeed = closingSpeed;
+            this.InitialTargetSize = initialTargetSize;
+            this.RealTargetSize = realTargetSize;
+            this.XPosition = x;
+            this.YPosition = y;
+            this.MovingTargets = movingTargets;
+            this.ReactionTime = reactionTime;
         }
 
         /// <summary>
@@ -148,7 +187,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for initial target size
         /// </summary>
-        public virtual float InitialTargetSize
+        public virtual double InitialTargetSize
         {
             get
             {
@@ -178,41 +217,41 @@ namespace FlightSim.Framework.Entities
         }
         
         /// <summary>
-        /// Gets or sets the target radiuses
+        /// Gets or sets the calculated radiuses
         /// </summary>
-        public virtual List<float> TargetRadiuses
+        public virtual List<double> CalculatedRadiuses
         {
             get
             {
-                return this.targetRadiuses;
+                return this.calculatedRadiuses;
             }
 
             set
             {
-                this.targetRadiuses = value;
+                this.calculatedRadiuses = value;
             }
         }
 
         /// <summary>
         /// Gets or sets the target opacities
         /// </summary>
-        public virtual List<float> TargetOpacities
+        public virtual List<double> CalculatedOpacities
         {
             get
             {
-                return this.targetOpacities;
+                return this.calculatedOpacities;
             }
 
             set
             {
-                this.targetOpacities = value;
+                this.calculatedOpacities = value;
             }
         }
 
         /// <summary>
         /// Gets or sets the x position value
         /// </summary>
-        public virtual float XPosition
+        public virtual double XPosition
         {
             get
             {
@@ -228,7 +267,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the y position value
         /// </summary>
-        public virtual float YPosition
+        public virtual double YPosition
         {
             get
             {
@@ -260,7 +299,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the user's reaction time
         /// </summary>
-        public virtual float ReactionTime
+        public virtual double ReactionTime
         {
             get
             {
@@ -274,14 +313,131 @@ namespace FlightSim.Framework.Entities
         }
 
         /// <summary>
+        /// Gets or sets the value for the rounded radiuses
+        /// </summary>
+        public virtual List<KeyValuePair<int, int>> RoundedRadiuses
+        {
+            get
+            {
+                return this.roundedRadiuses;
+            }
+
+            set
+            {
+                this.roundedRadiuses = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the target opacities
+        /// </summary>
+        public virtual List<double> TargetOpacities
+        {
+            get
+            {
+                return this.targetOpacities;
+            }
+
+            set
+            {
+                this.targetOpacities = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for start time of the experiment
+        /// </summary>
+        public virtual double StartTime
+        {
+            get
+            {
+                return this.startTime;
+            }
+
+            set
+            {
+                this.startTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for end time of the experiment
+        /// </summary>
+        public virtual double EndTime
+        {
+            get
+            {
+                return this.endTime;
+            }
+
+            set
+            {
+                this.endTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Generate the values to use for the target on screen
+        /// </summary>
+        public virtual void GenerateTargetValues()
+        {
+            double radius = 0;
+            double opacity = 0;
+            int time = 0;
+
+            int roundedRadius = 0;
+            int tempRounded = 0;
+
+            this.CalculatedRadiuses = new List<double>();
+            this.CalculatedOpacities = new List<double>();
+            this.TargetOpacities = new List<double>();
+            this.RoundedRadiuses = new List<KeyValuePair<int, int>>();
+
+            while (radius >= 0)
+            {
+                radius = this.GenerateRadii(time);
+                opacity = this.GenerateOpacity(radius, time);
+
+                this.calculatedRadiuses.Add(radius);
+                this.calculatedOpacities.Add(opacity);
+
+                try
+                {
+                    tempRounded = Convert.ToInt32(Math.Round(radius, 1, MidpointRounding.AwayFromZero));
+
+                    if (tempRounded > roundedRadius)
+                    {
+                        roundedRadius = tempRounded;
+
+                        this.roundedRadiuses.Add(new KeyValuePair<int, int>(roundedRadius, time));
+                        this.targetOpacities.Add(opacity);
+                        //time = -1;
+                    }
+                }
+                catch (OverflowException ex)
+                {
+                    // Should replace this, not sure how to evaluate infinity.
+                    Debug.Write("Infinity reached - " + ex.Message);
+                }
+
+                time++;
+            }
+        }
+
+        /// <summary>
         /// Generate a new radius based on the time passed
         /// </summary>
         /// <param name="time">The time value</param>
         /// <returns>The generated radius</returns>
-        public virtual float GenerateRadius(int time)
+        private double GenerateRadii(int time)
         {
             // Radius = (b * x_0/(R - (v *t)))
-            return (this.realTargetSize * this.userDistance) / (this.atmosphericVisibility - (this.closingSpeed * time));
+            double targetDistance = (this.atmosphericVisibility - (this.closingSpeed * time));
+            double perspective = this.realTargetSize * this.userDistance;
+
+            double radius = perspective / targetDistance;
+
+            return radius;
         }
 
         /// <summary>
@@ -290,10 +446,12 @@ namespace FlightSim.Framework.Entities
         /// <param name="radius">The new radius</param>
         /// <param name="time">The time value</param>
         /// <returns>The generated opacity</returns>
-        public virtual float GenerateOpacity(float radius, int time)
+        private double GenerateOpacity(double radius, int time)
         {
             // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
-            return Convert.ToSingle(1 - Math.Exp(-2.996 * this.initialTargetSize / radius));
+            double opacity = Math.Exp(-2.996 * this.initialTargetSize / radius);
+
+            return opacity;
         }
     }
 }

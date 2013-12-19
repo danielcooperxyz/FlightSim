@@ -5,17 +5,23 @@
 
 <script type="text/javascript" src="~/Scripts/flightSim.js"></script>
 
-<div id="experiment">
-    @Html.HiddenFor(m => m.Experiment.TargetRadiuses)
-    @Html.HiddenFor(m => m.Experiment.TargetOpacities)
-    @Html.HiddenFor(m => m.Experiment.XPosition)
-    @Html.HiddenFor(m => m.Experiment.YPosition)
+<div id="experiment">   
+    @{
+        string radiuses = string.Join(",", Model.Experiment.RoundedRadiuses.ToArray());
+        <input id="Experiment_Radiuses" type="hidden" value="@radiuses" />
+    }    
+    @{
+        string opacities = string.Join(",", Model.Experiment.TargetOpacities.ToArray());
+        <input id="Experiment_Opacities" type="hidden" value="@opacities" />
+    }
 
-    <form id="experimentResults" action="/Experiment/Save" method="post">
-        @Html.HiddenFor(m => m.Experiment.ReactionTime)
-    </form>
+    @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
+    {
+        @Html.HiddenFor(m => m.Experiment.Id)
+        @Html.HiddenFor(m => m.Experiment.StartTime)
+        @Html.HiddenFor(m => m.Experiment.EndTime)
+        @Html.HiddenFor(m => m.Experiment.XPosition)
+        @Html.HiddenFor(m => m.Experiment.YPosition)
+    }
     <div id="template" hidden="hidden" class="circle"></div>
-    <input id="timeLog" type="hidden" value="" />
-    <input id="radiusLog" type="hidden" value=""/>
-    <input id="opacityLog" type="hidden" value=""/>
 </div>

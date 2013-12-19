@@ -60,13 +60,15 @@ namespace FlightSim.Website.Controllers
         /// <param name="xPostion">The x position to save</param>
         /// <param name="yPostion">The y position to save</param>
         /// <param name="reactionTime">The reaction time to save</param>
-        public void Save(Guid id, float xPostion, float yPostion, float reactionTime)
+        public void Save(ExperimentModel model)
         {
-            Experiment expToUpdate = this.experimentService.Get(id);
+            Experiment expToUpdate = this.experimentService.Get(model.Experiment.Id);
 
-            expToUpdate.XPosition = xPostion;
-            expToUpdate.YPosition = yPostion;
-            expToUpdate.ReactionTime = reactionTime;
+            expToUpdate.XPosition = model.Experiment.XPosition;
+            expToUpdate.YPosition = model.Experiment.YPosition;
+            expToUpdate.StartTime = model.Experiment.StartTime;
+            expToUpdate.EndTime = model.Experiment.EndTime;
+            expToUpdate.ReactionTime = (model.Experiment.EndTime - model.Experiment.StartTime);
 
             this.experimentService.Save(expToUpdate);
         }

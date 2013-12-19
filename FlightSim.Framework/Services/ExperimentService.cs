@@ -52,18 +52,10 @@ namespace FlightSim.Framework.Services
             newExperiment.ClosingSpeed = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.ClosingSpeed);
 
             newExperiment.MovingTargets = ConfigurationService.GetConfigurationValue<bool>(ConfigurationKey.MovingTargets);
+            
+            newExperiment.GenerateTargetValues();
 
-            newExperiment.TargetRadiuses = new List<float>();
-            newExperiment.TargetOpacities = new List<float>();
-
-            for (int i = 0; i < 30; i++)
-            {
-                newExperiment.TargetRadiuses.Add(newExperiment.GenerateRadius(i));
-
-                newExperiment.TargetOpacities.Add(newExperiment.GenerateOpacity(newExperiment.TargetRadiuses[i], i));
-            }
-
-            this.experimentRepository.Save(newExperiment);
+            this.Save(newExperiment);
 
             return newExperiment;
         }
