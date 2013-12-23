@@ -44,15 +44,6 @@ namespace FlightSim.Framework.Services
         {
             Experiment newExperiment = new Experiment();
 
-            newExperiment.Id = Guid.NewGuid();
-            newExperiment.AtmosphericVisibility = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.AtmosphericVisibility);
-            newExperiment.UserDistance = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.UserDistance);
-            newExperiment.InitialTargetSize = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.InitialTargetSize);
-            newExperiment.RealTargetSize = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.RealTargetSize);
-            newExperiment.ClosingSpeed = ConfigurationService.GetConfigurationValue<int>(ConfigurationKey.ClosingSpeed);
-
-            newExperiment.MovingTargets = ConfigurationService.GetConfigurationValue<bool>(ConfigurationKey.MovingTargets);
-            
             newExperiment.GenerateTargetValues();
 
             this.Save(newExperiment);
@@ -61,7 +52,7 @@ namespace FlightSim.Framework.Services
         }
 
         /// <inheritdoc />
-        public Experiment Get(Guid id)
+        public Experiment Get(int id)
         {
             return this.experimentRepository.Get(id);
         }

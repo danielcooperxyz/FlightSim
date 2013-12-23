@@ -56,10 +56,7 @@ namespace FlightSim.Website.Controllers
         /// <summary>
         /// POST: /Experiment/Save
         /// </summary>
-        /// <param name="id">The id of the experiment to save the details to</param>
-        /// <param name="xPostion">The x position to save</param>
-        /// <param name="yPostion">The y position to save</param>
-        /// <param name="reactionTime">The reaction time to save</param>
+        /// <param name="model">The experiment model which stores the experiment values to save</param>
         public void Save(ExperimentModel model)
         {
             Experiment expToUpdate = this.experimentService.Get(model.Experiment.Id);
@@ -68,7 +65,7 @@ namespace FlightSim.Website.Controllers
             expToUpdate.YPosition = model.Experiment.YPosition;
             expToUpdate.StartTime = model.Experiment.StartTime;
             expToUpdate.EndTime = model.Experiment.EndTime;
-            expToUpdate.ReactionTime = (model.Experiment.EndTime - model.Experiment.StartTime);
+            expToUpdate.ReactionTime = model.Experiment.EndTime - model.Experiment.StartTime;
 
             this.experimentService.Save(expToUpdate);
         }

@@ -25,7 +25,7 @@ namespace FlightSim.Framework.Services
         /// </summary>
         /// <param name="id">The id of the experiment to get</param>
         /// <returns>The experiment with the matching id</returns>
-        Experiment Get(Guid id);
+        Experiment Get(int id);
 
         /// <summary>
         /// Save the passed the experiment

@@ -6,10 +6,6 @@
 
 namespace FlightSim.Framework.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using FlightSim.Framework.Entities;
 
     /// <summary>
@@ -22,7 +18,7 @@ namespace FlightSim.Framework.Repositories
         /// </summary>
         /// <param name="id">The id of the experiment to get</param>
         /// <returns>The experiment object</returns>
-        Experiment Get(Guid id);
+        Experiment Get(int id);
 
         /// <summary>
         /// Save the experiment object

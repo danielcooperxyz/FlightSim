@@ -18,7 +18,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Stores the id of the experiment
         /// </summary>
-        private Guid id;
+        private int id;
 
         /// <summary>
         /// Stores the value for atmospheric visibility
@@ -70,7 +70,11 @@ namespace FlightSim.Framework.Entities
         /// </summary>
         private bool movingTarget;
 
+        /// <summary>
+        /// Stores the value for the reaction time of the experiment participant
+        /// </summary>
         private double reactionTime;
+
         /// <summary>
         /// Stores the rounded values for the radius and the number of seconds to animate between
         /// </summary>
@@ -92,38 +96,21 @@ namespace FlightSim.Framework.Entities
         private double endTime;
 
         /// <summary>
+        /// Stores the configuration for the experiment
+        /// </summary>
+        private Configuration configuration;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Experiment"/> class
         /// </summary>
         public Experiment()
-        { }
-
-        public Experiment(Guid id,
-            int atmosVis,
-            int userDistance,
-            int closingSpeed,
-            double initTargetSize,
-            int realTargetSize,
-            double x,
-            double y,
-            bool movingTargets,
-            double reactionTime)
-        {
-            this.Id = id;
-            this.AtmosphericVisibility = atmosVis;
-            this.UserDistance = userDistance;
-            this.ClosingSpeed = closingSpeed;
-            this.InitialTargetSize = initialTargetSize;
-            this.RealTargetSize = realTargetSize;
-            this.XPosition = x;
-            this.YPosition = y;
-            this.MovingTargets = movingTargets;
-            this.ReactionTime = reactionTime;
+        { 
         }
 
         /// <summary>
         /// Gets or sets the value for the experiment id
         /// </summary>
-        public virtual Guid Id
+        public virtual int Id
         {
             get
             {
@@ -313,6 +300,22 @@ namespace FlightSim.Framework.Entities
         }
 
         /// <summary>
+        /// Gets or sets the configuration for this experiment
+        /// </summary>
+        public virtual Configuration Configuration
+        {
+            get
+            {
+                return this.configuration;
+            }
+
+            set
+            {
+                this.configuration = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the value for the rounded radiuses
         /// </summary>
         public virtual List<KeyValuePair<int, int>> RoundedRadiuses
@@ -411,7 +414,8 @@ namespace FlightSim.Framework.Entities
 
                         this.roundedRadiuses.Add(new KeyValuePair<int, int>(roundedRadius, time));
                         this.targetOpacities.Add(opacity);
-                        //time = -1;
+
+                        // time = -1;
                     }
                 }
                 catch (OverflowException ex)
@@ -432,8 +436,7 @@ namespace FlightSim.Framework.Entities
         private double GenerateRadii(int time)
         {
             // Radius = (b * x_0/(R - (v *t)))
-
-            double targetDistance = (this.atmosphericVisibility - (this.closingSpeed * time));
+            double targetDistance = this.atmosphericVisibility - (this.closingSpeed * time);
 
             double perspective = this.realTargetSize * this.userDistance;
 

@@ -7,6 +7,7 @@
 namespace FlightSim.DataAccess.Mappings
 {
     using FlightSim.Framework.Entities;
+    using NHibernate.Mapping.ByCode;
     using NHibernate.Mapping.ByCode.Conformist;
     using NHibernate.Type;
 
@@ -16,25 +17,29 @@ namespace FlightSim.DataAccess.Mappings
     public class ExperimentMap : ClassMapping<Experiment>
     {
         /// <summary>
-        /// Initializes a new instance of the ExperimentMap class
+        /// Initializes a new instance of the <see cref="ExperimentMap"/> class
         /// </summary>
         public ExperimentMap()
         {
             this.Table("Experiment");
 
-            this.Id(e => e.Id);
+            this.Id(e => e.Id, m => { m.Generator(Generators.Identity); });
 
-            this.Property(e => e.AtmosphericVisibility, m => { m.Type<Int32Type>(); });
-            this.Property(e => e.UserDistance, m => { m.Type<Int32Type>(); });
-            this.Property(e => e.ClosingSpeed, m => { m.Type<Int32Type>(); });
-            this.Property(e => e.InitialTargetSize, m => { m.Type<DoubleType>(); });
-            this.Property(e => e.RealTargetSize, m => { m.Type<Int32Type>(); });
             this.Property(e => e.XPosition, m => { m.Type<DoubleType>(); });
             this.Property(e => e.YPosition, m => { m.Type<DoubleType>(); });
-            this.Property(e => e.MovingTargets, m => { m.Type<BooleanType>(); });
             this.Property(e => e.ReactionTime, m => { m.Type<DoubleType>(); });
             this.Property(e => e.StartTime, m => { m.Type<DoubleType>(); });
             this.Property(e => e.EndTime, m => { m.Type<DoubleType>(); });
+
+            this.ManyToOne(
+            e => e.Configuration,
+            c =>
+            {
+                c.Cascade(Cascade.None);
+                c.Column("Id");
+                c.ForeignKey("FK_Experiment_Configuration");
+                c.Class(typeof(Configuration));
+            });
         }
     }
 }

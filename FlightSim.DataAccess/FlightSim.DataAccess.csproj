@@ -58,7 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\ConfigurationMap.cs" />
     <Compile Include="Mappings\ExperimentMap.cs" />
+    <Compile Include="Repositories\ConfigurationRepository.cs" />
     <Compile Include="Repositories\ExperimentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLSession.cs" />

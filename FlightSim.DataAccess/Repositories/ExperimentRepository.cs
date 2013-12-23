@@ -3,6 +3,7 @@
 // Copyright (c) Daniel Cooper. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace FlightSim.DataAccess
 {
     using System;
@@ -43,7 +44,7 @@ namespace FlightSim.DataAccess
         /// </summary>
         /// <param name="id">The id of the experiment to get</param>
         /// <returns>The experiment object</returns>
-        public Experiment Get(Guid id)
+        public Experiment Get(int id)
         {
             Experiment exp = this.session.QueryOver<Experiment>()
                 .Where(e => e.Id == id)
