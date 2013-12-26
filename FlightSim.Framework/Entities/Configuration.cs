@@ -57,6 +57,16 @@ namespace FlightSim.Framework.Entities
         private bool deleted;
 
         /// <summary>
+        /// The value of the background color
+        /// </summary>
+        private string backgroundColor;
+
+        /// <summary>
+        /// The value of the target color
+        /// </summary>
+        private string targetColor;
+
+        /// <summary>
         /// Gets or sets the id of this configuration
         /// </summary>
         public virtual int Id
@@ -197,6 +207,38 @@ namespace FlightSim.Framework.Entities
             set
             {
                 this.deleted = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether an experiment is deleted or not
+        /// </summary>
+        public virtual string BackgroundColor
+        {
+            get
+            {
+                return this.backgroundColor;
+            }
+
+            set
+            {
+                this.backgroundColor = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether an experiment is deleted or not
+        /// </summary>
+        public virtual string TargetColor
+        {
+            get
+            {
+                return this.targetColor;
+            }
+
+            set
+            {
+                this.targetColor = value;
             }
         }
     }

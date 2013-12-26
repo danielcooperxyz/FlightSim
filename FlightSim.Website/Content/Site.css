@@ -154,14 +154,14 @@ a {
 }
 
 .row {
-    display: table-row;
     width: 75%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .cell {
-    display:table-cell;
+    width: 25%;
+    display: table-cell;
 }
 
 .label {
@@ -171,8 +171,6 @@ a {
 /* Experiment */
 .circle { 
     border-radius: 50%;
-    background-color:#7F7F7F;
-    border-color:#7F7F7F;
     border-width:2px;
     position:absolute;
     border-style:solid;
