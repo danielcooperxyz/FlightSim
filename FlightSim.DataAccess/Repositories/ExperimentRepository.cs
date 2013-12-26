@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace FlightSim.DataAccess
+namespace FlightSim.DataAccess.Repositories
 {
     using System;
     using System.Collections.Generic;

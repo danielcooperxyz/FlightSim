@@ -5,6 +5,7 @@
     background-color: #fff;
     height:100%;
     width:100%;
+    margin:0;
 }
 
 header, footer, nav, section {
@@ -104,10 +105,27 @@ a {
     transition: .1s linear box-shadow;
 }
 
+.titleContainer{
+    font-size: 200%;
+    font-weight: bold;
+    width:75%;
+    margin-top:1em;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.title {
+    text-align:center;
+}
+
 /* Home */
+#homeTitle {
+    margin-top:3em !important;
+}
+
 #start {
     width: 20%;
-    margin-top: 15%;
+    margin-top: 5em;
     text-align:center;
     font-size: 150%;
 }
@@ -122,24 +140,35 @@ a {
     padding-right:5px;
 }
 
-#titleContainer{
-    margin-top:5%;
-    width: auto;
-    display: block;
-    white-space: nowrap;
-    position: absolute;
-    left:50%;
-    font-size: 200%;
-    font-weight: bold;
+/* Configuration */
+
+#inputContainer {
+    margin-top: 2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
+    border: 1px solid #00529B;
+    text-decoration: none;
+    border-radius: 15px;
+    display:table;
 }
 
-#title{
-    position: relative;
-    left: -50%;
+.row {
+    display: table-row;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.cell {
+    display:table-cell;
+}
 
-/* Experiments */
+.label {
+    text-align: right;
+}
+
+/* Experiment */
 .circle { 
     border-radius: 50%;
     background-color:#7F7F7F;

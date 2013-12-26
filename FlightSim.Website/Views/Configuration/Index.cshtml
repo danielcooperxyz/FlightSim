@@ -1,0 +1,58 @@
+﻿@model FlightSim.Website.Models.ConfigurationModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <div class="titleContainer">
+        <div class="title">Experiment Configurations</div>
+    </div>
+    <div id="inputContainer">
+        <div id="configurationInputs">
+            @using (Html.BeginForm("Save", "Configuration"))
+            {
+                <div class="row">
+                    <div class="label cell">
+                        @Html.LabelFor(m => m.Configuration.AtmosphericVisibility, "Atmospheric Visibility:")
+                    </div>
+                    <div class="cell">
+                        @Html.TextBoxFor(m => m.Configuration.AtmosphericVisibility)
+                    </div>
+                    <div class="label cell">
+                        @Html.LabelFor(m => m.Configuration.ClosingSpeed, "Closing Speed:")
+                    </div>
+                    <div class="cell">
+                        @Html.TextBoxFor(m => m.Configuration.ClosingSpeed)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label cell" >
+                        @Html.LabelFor(m => m.Configuration.InitialTargetSize, "Initial Target Size:")
+                    </div>
+                    <div class="cell">
+                        @Html.TextBoxFor(m => m.Configuration.InitialTargetSize)
+                    </div>
+                    <div class="label cell">
+                        @Html.LabelFor(m => m.Configuration.RealTargetSize, "Real Target Size:")
+                    </div>
+                    <div class="cell">
+                        @Html.TextBoxFor(m => m.Configuration.RealTargetSize)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label cell">
+                        @Html.LabelFor(m => m.Configuration.UserDistance, "User Distance:")
+                    </div>
+                    <div class="cell">
+                        @Html.TextBoxFor(m => m.Configuration.UserDistance)
+                    </div>
+                    <div class="label cell">
+                        @Html.LabelFor(m => m.Configuration.MovingTargets, "Moving Targets:")
+                    </div>
+                    <div class="cell">
+                        @Html.TextBoxFor(m => m.Configuration.MovingTargets)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

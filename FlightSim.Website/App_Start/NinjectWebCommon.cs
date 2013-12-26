@@ -8,6 +8,7 @@ namespace FlightSim.Website.App_Start
     using System;
     using System.Web;
     using FlightSim.DataAccess;
+    using FlightSim.DataAccess.Repositories;
     using FlightSim.Framework.Repositories;
     using FlightSim.Framework.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -65,7 +66,9 @@ namespace FlightSim.Website.App_Start
         {
             kernel.Bind<ISession>().ToMethod(x => SQLSession.Instance.OpenSession()).InRequestScope();
             kernel.Bind<IExperimentRepository>().To<ExperimentRepository>();
+            kernel.Bind<IConfigurationRepository>().To<ConfigurationRepository>();
             kernel.Bind<IExperimentService>().To<ExperimentService>();
+            kernel.Bind<IConfigurationService>().To<ConfigurationService>();
         }        
     }
 }

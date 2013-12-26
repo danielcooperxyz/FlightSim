@@ -59,7 +59,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the id of this configuration
         /// </summary>
-        public int Id
+        public virtual int Id
         {
             get
             {
@@ -75,7 +75,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the atmospheric visibility
         /// </summary>
-        public int AtmosphericVisibility
+        public virtual int AtmosphericVisibility
         {
             get
             {
@@ -91,7 +91,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the user distance
         /// </summary>
-        public int UserDistance
+        public virtual int UserDistance
         {
             get
             {
@@ -107,7 +107,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the closing speed
         /// </summary>
-        public int ClosingSpeed
+        public virtual int ClosingSpeed
         {
             get
             {
@@ -123,7 +123,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the initial target size
         /// </summary>
-        public float InitialTargetSize
+        public virtual float InitialTargetSize
         {
             get
             {
@@ -139,7 +139,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the real target size
         /// </summary>
-        public int RealTargetSize
+        public virtual int RealTargetSize
         {
             get
             {
@@ -155,7 +155,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets a value indicating whether the experiment targets move or not
         /// </summary>
-        public bool MovingTargets
+        public virtual bool MovingTargets
         {
             get
             {
@@ -171,7 +171,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets a value indicating whether the experiment is active or not
         /// </summary>
-        public bool Active
+        public virtual bool Active
         {
             get
             {
@@ -187,7 +187,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets a value indicating whether an experiment is deleted or not
         /// </summary>
-        public bool Deleted
+        public virtual bool Deleted
         {
             get
             {
