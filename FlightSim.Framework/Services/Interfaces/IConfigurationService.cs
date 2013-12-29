@@ -6,6 +6,7 @@
 
 namespace FlightSim.Framework.Services
 {
+    using System.Collections.Generic;
     using FlightSim.Framework.Entities;
 
     /// <summary>
@@ -13,6 +14,19 @@ namespace FlightSim.Framework.Services
     /// </summary>
     public interface IConfigurationService
     {
+        /// <summary>
+        /// Get the configuration that matches the passed id
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to retrieve</param>
+        /// <returns>The requested id</returns>
+        Configuration Get(int configurationId);
+
+        /// <summary>
+        /// Get all the stored configurations
+        /// </summary>
+        /// <returns>All the stored configurations that aren't marked as deleted</returns>
+        IList<Configuration> GetConfigurations();
+
         /// <summary>
         /// Get the currently active configuration
         /// </summary>

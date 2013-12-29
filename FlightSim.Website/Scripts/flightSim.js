@@ -22,23 +22,6 @@ function getRandomY(){
 	return Math.floor(randomInt * winHeight);
 }
 
-function parseDateTime(Date)
-{
-    var dd=Date.getDay();//yields day
-
-    var MM=Date.getMonth();//yields month
-
-    var yyyy=Date.getYear(); //yields year
-
-    var HH=Date.getHours();//yields hours 
-
-    var mm=Date.getMinutes();//yields minutes
-
-    var ss=Date.getSeconds();//yields seconds
-
-    var Time=dd+"/"+MM+"/"+yyyy+" "+HH+':'+mm+':'+ss; 
-}
-
 // Set the position of the target
 function setPosition(target)
 {
@@ -80,9 +63,10 @@ function parseTargetData()
 
 function setupTarget()
 {
+    var initialSize = parseFloat($('#initialTargetSize'));
     target = $('#template');
-    target.css('height', 0);
-    target.css('width', 0);
+    target.css('height', initialSize);
+    target.css('width', initialSize);
     target.css("opacity", 0);
     target.show();
     setPosition(target);
@@ -94,7 +78,14 @@ function updateObject()
 
     if (timer < diameterValues.length)
     {
-        target.animate({ width: diameterValues[timer].toString() + "px", height: diameterValues[timer].toString() + "px", opacity: opacityValues[timer].toString() }, { duration: animationTimes[timer], complete: updateObject });
+        target.animate(
+            {
+                width: diameterValues[timer].toString() + "px", height: diameterValues[timer].toString() + "px",
+                opacity: opacityValues[timer].toString()
+            },
+            animationTimes[timer],
+            'linear',
+            updateObject);
     }
 }
 

@@ -21,31 +21,6 @@ namespace FlightSim.Framework.Entities
         private int id;
 
         /// <summary>
-        /// Stores the value for atmospheric visibility
-        /// </summary>
-        private int atmosphericVisibility;
-
-        /// <summary>
-        /// Stores the value for user distance
-        /// </summary>
-        private int userDistance;
-
-        /// <summary>
-        /// Stores the value for closing speed
-        /// </summary>
-        private int closingSpeed;
-
-        /// <summary>
-        /// Stores the value for initial target size
-        /// </summary>
-        private double initialTargetSize;
-
-        /// <summary>
-        /// Stores the value for real target size
-        /// </summary>
-        private int realTargetSize;
-
-        /// <summary>
         /// Stores the values to use for the calculated radiuses
         /// </summary>
         private List<double> calculatedRadiuses;
@@ -64,11 +39,6 @@ namespace FlightSim.Framework.Entities
         /// Stores the value to use for the y position of the target
         /// </summary>
         private double yPosition;
-
-        /// <summary>
-        /// Stores the value to determine whether the target should move or not
-        /// </summary>
-        private bool movingTarget;
 
         /// <summary>
         /// Stores the value for the reaction time of the experiment participant
@@ -120,86 +90,6 @@ namespace FlightSim.Framework.Entities
             set
             {
                 this.id = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the value for atmospheric visibility
-        /// </summary>
-        public virtual int AtmosphericVisibility
-        {
-            get
-            {
-                return this.atmosphericVisibility;
-            }
-
-            set
-            {
-                this.atmosphericVisibility = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the value for user distance
-        /// </summary>
-        public virtual int UserDistance
-        {
-            get
-            {
-                return this.userDistance;
-            }
-
-            set
-            {
-                this.userDistance = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the value for closing speed
-        /// </summary>
-        public virtual int ClosingSpeed
-        {
-            get
-            {
-                return this.closingSpeed;
-            }
-
-            set
-            {
-                this.closingSpeed = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the value for initial target size
-        /// </summary>
-        public virtual double InitialTargetSize
-        {
-            get
-            {
-                return this.initialTargetSize;
-            }
-
-            set
-            {
-                this.initialTargetSize = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the real target size
-        /// </summary>
-        public virtual int RealTargetSize
-        {
-            get
-            {
-                return this.realTargetSize;
-            }
-
-            set
-            {
-                this.realTargetSize = value;
             }
         }
         
@@ -264,22 +154,6 @@ namespace FlightSim.Framework.Entities
             set
             {
                 this.yPosition = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether targets move
-        /// </summary>
-        public virtual bool MovingTargets
-        {
-            get
-            {
-                return this.movingTarget;
-            }
-
-            set
-            {
-                this.movingTarget = value;
             }
         }
 
@@ -436,13 +310,13 @@ namespace FlightSim.Framework.Entities
         private double GenerateRadii(int time)
         {
             // Radius = (b * x_0/(R - (v *t)))
-            double targetDistance = this.atmosphericVisibility - (this.closingSpeed * time);
+            double targetDistance = this.Configuration.AtmosphericVisibility - (this.Configuration.ClosingSpeed * time);
 
-            double perspective = this.realTargetSize * this.userDistance;
+            double perspective = this.Configuration.RealTargetSize * this.Configuration.UserDistance;
 
             double radius = perspective / targetDistance;
 
-            return radius;
+            return radius * 100;
         }
 
         /// <summary>
@@ -454,7 +328,7 @@ namespace FlightSim.Framework.Entities
         private double GenerateOpacity(double radius, int time)
         {
             // TRANSPARENCY =1-(e^(-2.996 * (r_0 / r)))
-            double opacity = Math.Exp(-2.996 * this.initialTargetSize / radius);
+            double opacity = Math.Exp(-2.996 * this.Configuration.InitialTargetSize / radius);
 
             return opacity;
         }

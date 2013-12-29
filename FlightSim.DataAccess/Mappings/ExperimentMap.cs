@@ -35,8 +35,8 @@ namespace FlightSim.DataAccess.Mappings
             e => e.Configuration,
             c =>
             {
-                c.Cascade(Cascade.None);
-                c.Column("Id");
+                c.Cascade(Cascade.All);
+                c.Column("ConfigurationId");
                 c.ForeignKey("FK_Experiment_Configuration");
                 c.Class(typeof(Configuration));
             });

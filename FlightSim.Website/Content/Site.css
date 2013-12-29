@@ -64,10 +64,14 @@ textarea {
 }
 
 /* General */
+.hidden {
+    display: none;
+}
 
 .centered {
     margin-left: auto;
     margin-right: auto;
+    text-align:center;
 }
 
 a {
@@ -87,6 +91,21 @@ a {
 
 .mainText{
     color: #00529B;
+}
+
+.table 
+{
+    display: table;
+}
+
+.row
+{
+    display: table-row;
+}
+
+.cell
+{
+    display: table-cell;
 }
 
 .button {
@@ -150,18 +169,50 @@ a {
     border: 1px solid #00529B;
     text-decoration: none;
     border-radius: 15px;
-    display:table;
 }
 
-.row {
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
+#configurationSelector 
+{
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
 }
 
-.cell {
+    #configurationSelector p 
+    {
+        display: inline-block;
+    }
+
+#configurationInputs
+{
+    width:100%;
+}
+
+    #configurationInputs form {
+        width: 100%;
+    }
+
+    #configurationInputs .row {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+#configurationInputs .cell {
     width: 25%;
-    display: table-cell;
+}
+
+#configSelect 
+{
+    width: 25%;
+}
+
+#create
+{
+    margin-top:2em;
+    display:inline-block;
 }
 
 .label {

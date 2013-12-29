@@ -2,12 +2,76 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script type="text/javascript">
+    var getConfigUrl = '@Url.Action("GetConfiguration", "Configuration")'
+</script>
+
+<script type="text/javascript" src="~/Scripts/configuration.js"></script>
+
 <div>
     <div class="titleContainer">
         <div class="title">Experiment Configurations</div>
     </div>
     <div id="inputContainer">
-        <div id="configurationInputs">
+        <div id="configurationSelector" class="centered table">
+            Select a configuration:
+            @Html.DropDownListFor(m => m.ConfigurationId, new SelectList(@Model.StoredConfigurations, "Id", "Name"), string.Empty, new { id = "configSelect" })
+            <div class="row">
+                <div class="cell">
+                    <div id="create" class="button">
+                        Create new configuration
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="configurationDisplay" class="table centered" >
+            <div class="row">
+                <div class="label cell">
+                    <label for="atmosphericVisibility">Atmospheric Visibility:</label>
+                </div>
+                <div class="cell">
+                    <span id="atmosphericVisibility"></span>
+                </div>
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.ClosingSpeed, "Closing Speed:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.ClosingSpeed)
+                </div>
+            </div>
+            <div class="row">
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.InitialTargetSize, "Initial Target Size:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.InitialTargetSize)
+                </div>
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.RealTargetSize, "Real Target Size:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.RealTargetSize)
+                </div>
+            </div>
+            <div class="row">
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.UserDistance, "User Distance:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.UserDistance)
+                </div>
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.MovingTargets, "Moving Targets:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.MovingTargets)
+                </div>
+            </div>
+        </div>
+
+        <div id="configurationInputs" class="table centered">
             @using (Html.BeginForm("Save", "Configuration"))
             {                
                 <div class="row">

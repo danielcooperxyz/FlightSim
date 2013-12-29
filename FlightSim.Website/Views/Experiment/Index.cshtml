@@ -7,13 +7,13 @@
 <style type="text/css">
     body
     {
-        background-color: @Model.Experiment.Configuration.BackgroundColor;
+        background-color: @Model.Experiment.Configuration.BackgroundColour;
     }
 
     .circle 
     {
-        background-color: @Model.Experiment.Configuration.TargetColor;
-        border-color: @Model.Experiment.Configuration.TargetColor;
+        background-color: @Model.Experiment.Configuration.TargetColour;
+        border-color: @Model.Experiment.Configuration.TargetColour;
     }
 </style>
 <div id="experiment">   
@@ -25,6 +25,8 @@
         string opacities = string.Join(",", Model.Experiment.TargetOpacities.ToArray());
         <input id="Experiment_Opacities" type="hidden" value="@opacities" />
     }
+
+    @Html.HiddenFor(m => m.Experiment.Configuration.InitialTargetSize, new { id = "initialTargetSize" })
 
     @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
     {

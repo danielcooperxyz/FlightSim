@@ -26,17 +26,29 @@ namespace FlightSim.Framework.Services
         private IExperimentRepository experimentRepository;
 
         /// <summary>
+        /// The configuration repository implementation
+        /// </summary>
+        private IConfigurationRepository configurationRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ExperimentService"/> class
         /// </summary>
         /// <param name="experimentRepository">The experiment repository to use</param>
-        public ExperimentService(IExperimentRepository experimentRepository)
+        /// <param name="configurationRepository">The configuration repository to use</param>
+        public ExperimentService(IExperimentRepository experimentRepository, IConfigurationRepository configurationRepository)
         {
             if (experimentRepository == null)
             {
                 throw new ArgumentNullException("Experiment Repository");
             }
 
+            if (configurationRepository == null)
+            {
+                throw new ArgumentNullException("Configuration Repository");
+            }
+
             this.experimentRepository = experimentRepository;
+            this.configurationRepository = configurationRepository;
         }
 
         /// <inheritdoc />
@@ -44,6 +56,7 @@ namespace FlightSim.Framework.Services
         {
             Experiment newExperiment = new Experiment();
 
+            newExperiment.Configuration = this.configurationRepository.GetActiveConfiguration();
             newExperiment.GenerateTargetValues();
 
             this.Save(newExperiment);

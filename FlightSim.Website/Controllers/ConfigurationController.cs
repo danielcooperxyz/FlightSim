@@ -9,6 +9,9 @@ namespace FlightSim.Website.Controllers
     using System;
     using System.Web.Mvc;
     using FlightSim.Framework.Services;
+    using FlightSim.Website.Models;
+    using FlightSim.Framework.Entities;
+    using System.Web.Script.Serialization;
 
     /// <summary>
     /// The configuration controller
@@ -40,7 +43,23 @@ namespace FlightSim.Website.Controllers
         /// <returns>The Index view</returns>
         public ActionResult Index()
         {
-            return this.View();
+            ConfigurationModel model = new ConfigurationModel();
+
+            model.StoredConfigurations = this.configurationService.GetConfigurations();
+
+            return this.View(model);
+        }
+
+        public string GetConfiguration(int configurationId)
+        {
+            Configuration requested = this.configurationService.Get(configurationId);
+
+            if (requested == null)
+            {
+                return string.Empty;
+            }
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(requested);
         }
     }
 }

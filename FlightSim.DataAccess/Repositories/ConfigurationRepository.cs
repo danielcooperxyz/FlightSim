@@ -7,6 +7,7 @@
 namespace FlightSim.DataAccess.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using FlightSim.Framework.Entities;
     using FlightSim.Framework.Repositories;
     using NHibernate;
@@ -44,10 +45,18 @@ namespace FlightSim.DataAccess.Repositories
         }
 
         /// <inheritdoc />
+        public IList<Configuration> GetConfigurations()
+        {
+            return this.session.QueryOver<Configuration>()
+                .Where(c => c.Deleted == false)
+                .List();
+        }
+
+        /// <inheritdoc />
         public Configuration GetActiveConfiguration()
         {
             return this.session.QueryOver<Configuration>()
-                .Where(c => c.Active == true)
+                .Where(c => c.Active == true && c.Deleted == false)
                 .SingleOrDefault<Configuration>();
         }
 

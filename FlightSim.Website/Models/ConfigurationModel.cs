@@ -6,6 +6,7 @@
 
 namespace FlightSim.Website.Models
 {
+    using System.Collections.Generic;
     using FlightSim.Framework.Entities;
 
     /// <summary>
@@ -14,9 +15,35 @@ namespace FlightSim.Website.Models
     public class ConfigurationModel
     {
         /// <summary>
-        /// Stores the value for the current configuration
+        /// Stores the value for the selected configuration id
         /// </summary>
-        private Configuration config;
+        private int configurationId;
+
+        /// <summary>
+        /// Stores the value for the current configuration
+        /// </summary>;
+        private Configuration configuration;
+
+        /// <summary>
+        /// Stores the value of all the stored configurations
+        /// </summary>
+        private IList<Configuration> storedConfigurations;
+
+        /// <summary>
+        /// Gets or sets the value of the configuration id to retrieve
+        /// </summary>
+        public int ConfigurationId
+        {
+            get
+            {
+                return this.configurationId;
+            }
+
+            set
+            {
+                this.configurationId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the value for the current configuration
@@ -25,12 +52,28 @@ namespace FlightSim.Website.Models
         {
             get 
             {
-                return this.config;
+                return this.configuration;
             }
 
             set
             {
-                this.config = value;
+                this.configuration = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the stored configurations
+        /// </summary>
+        public IList<Configuration> StoredConfigurations
+        {
+            get
+            {
+                return this.storedConfigurations;
+            }
+
+            set
+            {
+                this.storedConfigurations = value;
             }
         }
     }

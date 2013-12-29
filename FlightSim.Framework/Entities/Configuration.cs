@@ -17,6 +17,11 @@ namespace FlightSim.Framework.Entities
         private int id;
 
         /// <summary>
+        /// The value of the name of the configuration
+        /// </summary>
+        private string name;
+
+        /// <summary>
         /// The value for the atmospheric visibility
         /// </summary>
         private int atmosphericVisibility;
@@ -29,7 +34,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// The value for the initial target size
         /// </summary>
-        private float initialTargetSize;
+        private double initialTargetSize;
 
         /// <summary>
         /// The value for the user distance
@@ -59,12 +64,19 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// The value of the background color
         /// </summary>
-        private string backgroundColor;
+        private string backgroundColour;
 
         /// <summary>
         /// The value of the target color
         /// </summary>
-        private string targetColor;
+        private string targetColour;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Configuration"/> class
+        /// </summary>
+        public Configuration()
+        { 
+        }
 
         /// <summary>
         /// Gets or sets the id of this configuration
@@ -79,6 +91,22 @@ namespace FlightSim.Framework.Entities
             set
             {
                 this.id = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the name of the configuration
+        /// </summary>
+        public virtual string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value;
             }
         }
 
@@ -133,7 +161,7 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets the value for the initial target size
         /// </summary>
-        public virtual float InitialTargetSize
+        public virtual double InitialTargetSize
         {
             get
             {
@@ -213,32 +241,32 @@ namespace FlightSim.Framework.Entities
         /// <summary>
         /// Gets or sets a value indicating whether an experiment is deleted or not
         /// </summary>
-        public virtual string BackgroundColor
+        public virtual string BackgroundColour
         {
             get
             {
-                return this.backgroundColor;
+                return this.backgroundColour;
             }
 
             set
             {
-                this.backgroundColor = value;
+                this.backgroundColour = value;
             }
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether an experiment is deleted or not
         /// </summary>
-        public virtual string TargetColor
+        public virtual string TargetColour
         {
             get
             {
-                return this.targetColor;
+                return this.targetColour;
             }
 
             set
             {
-                this.targetColor = value;
+                this.targetColour = value;
             }
         }
     }

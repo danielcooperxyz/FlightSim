@@ -7,6 +7,7 @@
 namespace FlightSim.Framework.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using FlightSim.Framework.Entities;
     using FlightSim.Framework.Repositories;
@@ -29,8 +30,22 @@ namespace FlightSim.Framework.Services
         {
             if (configurationRepository == null)
             {
-                this.configurationRepository = configurationRepository;
+                throw new ArgumentNullException("Configuration Repository");
             }
+
+            this.configurationRepository = configurationRepository;
+        }
+
+        /// <inheritdoc />
+        public Configuration Get(int configurationId)
+        {
+            return this.configurationRepository.Get(configurationId);
+        }
+
+        /// <inheritdoc />
+        public IList<Configuration> GetConfigurations()
+        {
+            return this.configurationRepository.GetConfigurations();
         }
 
         /// <inheritdoc/>
