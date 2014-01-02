@@ -60,6 +60,7 @@ namespace FlightSim.DataAccess.Repositories
                 .SingleOrDefault<Configuration>();
         }
 
+        /// <inheritdoc />
         public void Create(Configuration configuration)
         {
             this.session.Save(configuration);

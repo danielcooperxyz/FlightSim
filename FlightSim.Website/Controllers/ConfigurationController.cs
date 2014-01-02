@@ -8,10 +8,9 @@ namespace FlightSim.Website.Controllers
 {
     using System;
     using System.Web.Mvc;
+    using FlightSim.Framework.Entities;
     using FlightSim.Framework.Services;
     using FlightSim.Website.Models;
-    using FlightSim.Framework.Entities;
-    using System.Web.Script.Serialization;
 
     /// <summary>
     /// The configuration controller
@@ -40,6 +39,7 @@ namespace FlightSim.Website.Controllers
         /// <summary>
         /// GET: /Configuration/
         /// </summary>
+        /// <param name="model">The model values to display</param>
         /// <returns>The Index view</returns>
         public ActionResult Index(ConfigurationModel model = null)
         {
@@ -57,7 +57,7 @@ namespace FlightSim.Website.Controllers
         /// GET: /Configuration/SaveConfiguration
         /// </summary>
         /// <param name="model">The configuration model</param>
-        /// <returns></returns>
+        /// <returns>The action result to display to the user</returns>
         public ActionResult Save(ConfigurationModel model)
         {
             ModelState.Clear();
