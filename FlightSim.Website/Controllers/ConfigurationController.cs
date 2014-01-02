@@ -66,30 +66,42 @@ namespace FlightSim.Website.Controllers
             {
                 if (model.Configuration != null)
                 {
-                    if (model.Configuration.Name != null)
-                    {
-                        if (model.Configuration.Id == 0)
-                        {
-                            this.configurationService.Create(model.Configuration);
-                        }
-                        else
-                        {
-                            if (model.Configuration.Active)
-                            {
-                                this.configurationService.SaveNewActiveConfiguration(model.Configuration);
-                            }
-                            else
-                            {
-                                this.configurationService.Update(model.Configuration);
-                            }
-                        }
-                    }
-                    else
+                    if (model.Configuration.Name == null)
                     {
                         ModelState.AddModelError("ConfigurationName", "You must enter a name for the configuration.");
                         model.StoredConfigurations = this.configurationService.GetConfigurations();
                         return this.View("Index", model);
                     }
+
+                    if (model.Configuration.BackgroundColour == null)
+                    {
+                        ModelState.AddModelError("BackgroundColour", "You must enter a background colour for the configuration.");
+                        model.StoredConfigurations = this.configurationService.GetConfigurations();
+                        return this.View("Index", model);
+                    }
+
+                    if (model.Configuration.TargetColour == null)
+                    {
+                        ModelState.AddModelError("BackgroundColour", "You must enter a background colour for the configuration.");
+                        model.StoredConfigurations = this.configurationService.GetConfigurations();
+                        return this.View("Index", model);
+                    }
+
+                    if (model.Configuration.Id == 0)
+                    {
+                        this.configurationService.Create(model.Configuration);
+                    }
+                    else
+                    {
+                        if (model.Configuration.Active)
+                        {
+                            this.configurationService.SaveNewActiveConfiguration(model.Configuration);
+                        }
+                        else
+                        {
+                            this.configurationService.Update(model.Configuration);
+                        }
+                    }                        
                 }
             }
 
