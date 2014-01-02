@@ -4,7 +4,10 @@
 }
 
 <script type="text/javascript">
-    var getConfigUrl = '@Url.Action("GetConfiguration", "Configuration")'
+    var getConfigUrl = '@Url.Action("GetConfiguration", "Configuration")',
+        activateConfigUrl = '@Url.Action("ActivateConfiguration", "Configuration")',
+        deleteConfigUrl = '@Url.Action("DeleteConfiguration", "Configuration")'
+
 </script>
 
 <script type="text/javascript" src="~/Scripts/configuration.js"></script>
@@ -15,108 +18,202 @@
     </div>
     <div id="inputContainer">
         <div id="configurationSelector" class="centered table">
-            Select a configuration:
-            @Html.DropDownListFor(m => m.ConfigurationId, new SelectList(@Model.StoredConfigurations, "Id", "Name"), string.Empty, new { id = "configSelect" })
             <div class="row">
                 <div class="cell">
-                    <div id="create" class="button">
-                        Create new configuration
+                    Select a configuration:
+                    @Html.DropDownListFor(m => m.ConfigurationId, new SelectList(@Model.StoredConfigurations, "Id", "Name"), string.Empty, new { id = "configSelect" })
+                </div>
+                <div class="cell">
+                    <a id="createConfiguration" href="#">
+                        <div class="button">Create new configuration</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="configurationDisplay">
+            <h3 id="name" class="centered"></h3>
+            <input id="configId" hidden />
+            <div class="table">
+                <div class="row">
+                    <div class="label cell">
+                        <label for="atmosphericVisibility">Atmospheric Visibility:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="atmosphericVisibility"></span>
+                    </div>
+                    <div class="cell">
+                    </div>
+                    <div class="label cell">
+                        <label for="closingSpeed">Closing Speed:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="closingSpeed"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label cell">
+                        <label for="initialTarget">Initial Target Size:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="initialTarget"></span>
+                    </div>
+                    <div class="cell">
+                    </div>
+                    <div class="label cell">
+                        <label for="realTarget">Real Target Size:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="realTarget"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label cell">
+                        <label for="userDistance">User Distance:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="userDistance"></span>
+                    </div>
+                    <div class="cell">
+                    </div>
+                    <div class="label cell">
+                        <label for="movingTargets">Moving Targets:</label>
+                    </div>
+                    <div class="cell">
+                        <input id="movingTargets" type="checkbox" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label cell">
+                        <label for="background">Background Colour:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="background"></span>
+                    </div>
+                    <div class="cell">
+                    </div>
+                    <div class="label cell">
+                        <label for="target">Target Colour:</label>
+                    </div>
+                    <div class="cell">
+                        <span id="target"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label cell">
+                        <label for="active">Active</label>
+                    </div>
+                    <div class="cell">
+                        <input id="active" type="checkbox" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell centered">
+                        <a id="edit" href="#">
+                            <div class="button">Edit</div>
+                        </a>
+                    </div>
+                    <div class="cell">
+                    </div>
+                    <div class="cell centered">
+                        <a id="activate" href="#">
+                            <div class="button">Activate</div>
+                        </a>
+                    </div>
+                    <div class="cell">
+                    </div>
+                    <div class="cell centered">
+                        <a id="delete" href="#">
+                            <div class="button">Delete</div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="configurationDisplay" class="table centered" >
+        @using (Html.BeginForm("Save", "Configuration", FormMethod.Post, new { id = "configurationInputs", @class = "centered table" }))
+        {   
+            @Html.HiddenFor(m => m.Configuration.Id);
+            
             <div class="row">
                 <div class="label cell">
-                    <label for="atmosphericVisibility">Atmospheric Visibility:</label>
+                    @Html.LabelFor(m => m.Configuration.Name, "Configuration Name:")
                 </div>
                 <div class="cell">
-                    <span id="atmosphericVisibility"></span>
+                    @Html.TextBoxFor(m => m.Configuration.Name)
                 </div>
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.AtmosphericVisibility, "Atmospheric Visibility:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.AtmosphericVisibility)
+                </div>
+            </div>
+            <div class="row">
                 <div class="label cell">
                     @Html.LabelFor(m => m.Configuration.ClosingSpeed, "Closing Speed:")
                 </div>
                 <div class="cell">
                     @Html.TextBoxFor(m => m.Configuration.ClosingSpeed)
                 </div>
-            </div>
-            <div class="row">
                 <div class="label cell">
                     @Html.LabelFor(m => m.Configuration.InitialTargetSize, "Initial Target Size:")
                 </div>
                 <div class="cell">
                     @Html.TextBoxFor(m => m.Configuration.InitialTargetSize)
                 </div>
+            </div>
+            <div class="row">
                 <div class="label cell">
                     @Html.LabelFor(m => m.Configuration.RealTargetSize, "Real Target Size:")
                 </div>
                 <div class="cell">
                     @Html.TextBoxFor(m => m.Configuration.RealTargetSize)
                 </div>
-            </div>
-            <div class="row">
                 <div class="label cell">
                     @Html.LabelFor(m => m.Configuration.UserDistance, "User Distance:")
                 </div>
                 <div class="cell">
                     @Html.TextBoxFor(m => m.Configuration.UserDistance)
                 </div>
+            </div>
+            <div class="row">
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.BackgroundColour, "Background Colour:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.BackgroundColour)
+                </div>
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.TargetColour, "Target Colour:")
+                </div>
+                <div class="cell">
+                    @Html.TextBoxFor(m => m.Configuration.TargetColour)
+                </div>
+            </div>
+            <div class="row">
                 <div class="label cell">
                     @Html.LabelFor(m => m.Configuration.MovingTargets, "Moving Targets:")
                 </div>
                 <div class="cell">
-                    @Html.TextBoxFor(m => m.Configuration.MovingTargets)
+                    @Html.CheckBoxFor(m => m.Configuration.MovingTargets)
+                </div>
+                <div class="label cell">
+                    @Html.LabelFor(m => m.Configuration.Active, "Active:")
+                </div>
+                <div class="cell">
+                    @Html.CheckBoxFor(m => m.Configuration.Active)
                 </div>
             </div>
-        </div>
-
-        <div id="configurationInputs" class="table centered">
-            @using (Html.BeginForm("Save", "Configuration"))
-            {                
-                <div class="row">
-                    <div class="label cell">
-                        @Html.LabelFor(m => m.Configuration.AtmosphericVisibility, "Atmospheric Visibility:")
-                    </div>
-                    <div class="cell">
-                        @Html.TextBoxFor(m => m.Configuration.AtmosphericVisibility)
-                    </div>
-                    <div class="label cell">
-                        @Html.LabelFor(m => m.Configuration.ClosingSpeed, "Closing Speed:")
-                    </div>
-                    <div class="cell">
-                        @Html.TextBoxFor(m => m.Configuration.ClosingSpeed)
-                    </div>
+            <div class="row">
+                <div class="cell">
                 </div>
-                <div class="row">
-                    <div class="label cell" >
-                        @Html.LabelFor(m => m.Configuration.InitialTargetSize, "Initial Target Size:")
-                    </div>
-                    <div class="cell">
-                        @Html.TextBoxFor(m => m.Configuration.InitialTargetSize)
-                    </div>
-                    <div class="label cell">
-                        @Html.LabelFor(m => m.Configuration.RealTargetSize, "Real Target Size:")
-                    </div>
-                    <div class="cell">
-                        @Html.TextBoxFor(m => m.Configuration.RealTargetSize)
-                    </div>
+                <div class="cell">
+                    <input value="Save" type="submit" class="button" />
                 </div>
-                <div class="row">
-                    <div class="label cell">
-                        @Html.LabelFor(m => m.Configuration.UserDistance, "User Distance:")
-                    </div>
-                    <div class="cell">
-                        @Html.TextBoxFor(m => m.Configuration.UserDistance)
-                    </div>
-                    <div class="label cell">
-                        @Html.LabelFor(m => m.Configuration.MovingTargets, "Moving Targets:")
-                    </div>
-                    <div class="cell">
-                        @Html.TextBoxFor(m => m.Configuration.MovingTargets)
-                    </div>
+                <div class="cell">
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>

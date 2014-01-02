@@ -34,7 +34,7 @@ namespace FlightSim.Website.Controllers
                 throw new ArgumentNullException("Configuration Service");
             }
 
-            this.configurationService = configurationService;                 
+            this.configurationService = configurationService;
         }
 
         /// <summary>
@@ -50,6 +50,34 @@ namespace FlightSim.Website.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// GET: /Configuration/SaveConfiguration
+        /// </summary>
+        /// <param name="model">The configuration model</param>
+        /// <returns></returns>
+        public void Save(ConfigurationModel model)
+        {
+            if (model != null)
+            {
+                if (model.Configuration != null)
+                {
+                    if (model.Configuration.Active)
+                    {
+                        this.configurationService.SaveNewActiveConfiguration(model.Configuration);
+                    }
+                    else
+                    {
+                        this.configurationService.Save(model.Configuration);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// GET: /Configuration/GetConfiguration?id=0
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to get</param>
+        /// <returns>The configuration object serialized to JSON</returns>
         public string GetConfiguration(int configurationId)
         {
             Configuration requested = this.configurationService.Get(configurationId);
@@ -60,6 +88,24 @@ namespace FlightSim.Website.Controllers
             }
 
             return Newtonsoft.Json.JsonConvert.SerializeObject(requested);
+        }
+
+        /// <summary>
+        ///  POST: /Configuration/ActivateConfiguration?id=0
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to activate</param>
+        public void ActivateConfiguration(int configurationId)
+        {
+            this.configurationService.ActivateConfiguration(configurationId);
+        }
+
+        /// <summary>
+        ///  POST: /Configuration/DeleteConfiguration?id=0
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to activate</param>
+        public void DeleteConfiguration(int configurationId)
+        {
+            this.configurationService.DeleteConfiguration(configurationId);
         }
     }
 }

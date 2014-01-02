@@ -58,7 +58,6 @@ namespace FlightSim.Framework.Services
 
             newExperiment.Configuration = this.configurationRepository.GetActiveConfiguration();
             newExperiment.GenerateTargetValues();
-
             this.Save(newExperiment);
 
             return newExperiment;

@@ -63,7 +63,7 @@ namespace FlightSim.DataAccess.Repositories
         /// <inheritdoc />
         public void Save(Configuration configuration)
         {
-            this.session.Save(configuration);
+            this.session.SaveOrUpdate(configuration);
             this.session.Flush();
         }
     }

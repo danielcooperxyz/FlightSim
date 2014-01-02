@@ -5,6 +5,7 @@
     background-color: #fff;
     height:100%;
     width:100%;
+    margin:0;
 }
 
 header, footer, nav, section {
@@ -63,10 +64,14 @@ textarea {
 }
 
 /* General */
+.hidden {
+    display: none !important;
+}
 
 .centered {
     margin-left: auto;
     margin-right: auto;
+    text-align:center;
 }
 
 a {
@@ -88,6 +93,26 @@ a {
     color: #00529B;
 }
 
+.table 
+{
+    display: table;
+}
+
+.header 
+{
+    display: table-header-group;
+}
+
+.row
+{
+    display: table-row;
+}
+
+.cell
+{
+    display: table-cell;
+}
+
 .button {
     font-size: 100%;
     padding: .5em 1.5em;
@@ -104,10 +129,27 @@ a {
     transition: .1s linear box-shadow;
 }
 
+.titleContainer{
+    font-size: 200%;
+    font-weight: bold;
+    width:75%;
+    margin-top:1em;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.title {
+    text-align:center;
+}
+
 /* Home */
+#homeTitle {
+    margin-top:3em !important;
+}
+
 #start {
     width: 20%;
-    margin-top: 15%;
+    margin-top: 5em;
     text-align:center;
     font-size: 150%;
 }
@@ -122,28 +164,116 @@ a {
     padding-right:5px;
 }
 
-#titleContainer{
-    margin-top:5%;
-    width: auto;
-    display: block;
-    white-space: nowrap;
-    position: absolute;
-    left:50%;
-    font-size: 200%;
-    font-weight: bold;
+/* Configuration */
+
+#inputContainer {
+    margin-top: 2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
+    border: 1px solid #00529B;
+    text-decoration: none;
+    border-radius: 15px;
 }
 
-#title{
-    position: relative;
-    left: -50%;
+#configurationSelector 
+{
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
 }
 
+    #configurationSelector p 
+    {
+        display: inline-block;
+    }
 
-/* Experiments */
+#configurationDisplay 
+{
+    border-top:1px solid #00529B;
+    padding-top: 2em;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
+}
+
+    #configurationDisplay .table
+    {
+        width: 100%;
+    }
+    #configurationDisplay .row .cell 
+    {
+        width: 20%;
+    }
+
+    #configurationDisplay .tableHeader 
+    {
+        width: 100% !important;
+    }
+    
+    #configurationDisplay h3 
+    {
+        margin-top:0;
+        column-span: all;
+        -webkit-column-span: all;
+    }
+
+    #configurationDisplay .label 
+    {
+        text-align: left;
+    }
+
+    #configurationDisplay .cell .button
+    {
+        margin-top:1em;
+    }
+
+#configurationInputs
+{
+    border-top:1px solid #00529B;
+    padding-top: 2em;
+    margin-top:2em;
+    margin-bottom:2em;
+}
+    
+#Configuration_MovingTargets
+{
+    vertical-align: middle;
+    margin-right: 100%;
+}
+
+#Configuration_Active
+{
+    vertical-align: middle;
+    margin-right: 100%;
+}
+
+#configurationInputs .row .cell {
+    width: 25%;
+}
+
+#configSelect 
+{
+    width: 25%;
+}
+
+#create
+{
+    margin-top:2em;
+    display:inline-block;
+}
+
+.label {
+    text-align: right;
+}
+
+/* Experiment */
 .circle { 
     border-radius: 50%;
-    background-color:#7F7F7F;
-    border-color:#7F7F7F;
     border-width:2px;
     position:absolute;
     border-style:solid;

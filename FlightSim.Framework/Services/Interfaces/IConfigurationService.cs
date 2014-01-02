@@ -22,6 +22,13 @@ namespace FlightSim.Framework.Services
         Configuration Get(int configurationId);
 
         /// <summary>
+        /// Get the configuration that matches the passed id
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to retrieve</param>
+        /// <returns>The requested id</returns>
+        void Save(Configuration configurationToSave);
+
+        /// <summary>
         /// Get all the stored configurations
         /// </summary>
         /// <returns>All the stored configurations that aren't marked as deleted</returns>
@@ -38,5 +45,17 @@ namespace FlightSim.Framework.Services
         /// </summary>
         /// <param name="activeConfiguration">The newly active configuration</param>
         void SaveNewActiveConfiguration(Configuration activeConfiguration);
+
+        /// <summary>
+        /// Sets the configuration as active
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to activate</param>
+        void ActivateConfiguration(int configurationId);
+
+        /// <summary>
+        /// Sets the configuration as deleted
+        /// </summary>
+        /// <param name="configurationId">The id of the configuration to set as deleted</param>
+        void DeleteConfiguration(int configurationId);
     }
 }

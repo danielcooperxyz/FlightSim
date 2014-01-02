@@ -98,6 +98,11 @@ a {
     display: table;
 }
 
+.header 
+{
+    display: table-header-group;
+}
+
 .row
 {
     display: table-row;
@@ -185,22 +190,69 @@ a {
         display: inline-block;
     }
 
-#configurationInputs
+#configurationDisplay 
 {
-    width:100%;
+    border-top:1px solid #00529B;
+    padding-top: 2em;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
 }
 
-    #configurationInputs form {
+    #configurationDisplay .table
+    {
         width: 100%;
     }
-
-    #configurationInputs .row {
-        width: 75%;
-        margin-left: auto;
-        margin-right: auto;
+    #configurationDisplay .row .cell 
+    {
+        width: 20%;
     }
 
-#configurationInputs .cell {
+    #configurationDisplay .tableHeader 
+    {
+        width: 100% !important;
+    }
+    
+    #configurationDisplay h3 
+    {
+        margin-top:0;
+        column-span: all;
+        -webkit-column-span: all;
+    }
+
+    #configurationDisplay .label 
+    {
+        text-align: left;
+    }
+
+    #configurationDisplay .cell .button
+    {
+        margin-top:1em;
+    }
+
+#configurationInputs
+{
+    border-top:1px solid #00529B;
+    padding-top: 2em;
+    margin-top:2em;
+    margin-bottom:2em;
+}
+    
+#Configuration_MovingTargets
+{
+    vertical-align: middle;
+    margin-right: 100%;
+}
+
+#Configuration_Active
+{
+    vertical-align: middle;
+    margin-right: 100%;
+}
+
+#configurationInputs .row .cell {
     width: 25%;
 }
 

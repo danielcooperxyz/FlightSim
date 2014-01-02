@@ -9,6 +9,7 @@ namespace FlightSim.Framework.Services
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using FlightSim.Framework.Entities;
     using FlightSim.Framework.Repositories;
 
@@ -43,6 +44,12 @@ namespace FlightSim.Framework.Services
         }
 
         /// <inheritdoc />
+        public void Save(Configuration configurationToSave)
+        {
+            this.configurationRepository.Save(configurationToSave);
+        }
+
+        /// <inheritdoc />
         public IList<Configuration> GetConfigurations()
         {
             return this.configurationRepository.GetConfigurations();
@@ -58,8 +65,12 @@ namespace FlightSim.Framework.Services
         public void SaveNewActiveConfiguration(Configuration configuration)
         {
             Configuration oldActive = this.configurationRepository.GetActiveConfiguration();
-            oldActive.Active = false;
-            this.configurationRepository.Save(oldActive);
+            
+            if (oldActive != null)
+            {
+                oldActive.Active = false;
+                this.configurationRepository.Save(oldActive);
+            }
 
             if (configuration.Active == false)
             {
@@ -67,6 +78,34 @@ namespace FlightSim.Framework.Services
             }
 
             this.configurationRepository.Save(configuration);
+        }
+        
+        /// <inheritdoc/>
+        public void ActivateConfiguration(int configurationId)
+        {
+            Configuration toActivate = this.Get(configurationId);
+
+            this.SaveNewActiveConfiguration(toActivate);
+        }
+
+        /// <inheritdoc/>
+        public void DeleteConfiguration(int configurationId)
+        {
+            Configuration toDelete = this.Get(configurationId);
+
+            if (toDelete.Active)
+            {
+                Configuration newActive = this.configurationRepository.GetConfigurations().FirstOrDefault();
+
+                if (newActive != null)
+                {
+                    this.SaveNewActiveConfiguration(newActive);
+                }
+            }
+
+            toDelete.Deleted = true;
+
+            this.configurationRepository.Save(toDelete);            
         }
     }
 }
