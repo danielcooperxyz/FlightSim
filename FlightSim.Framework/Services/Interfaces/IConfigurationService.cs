@@ -22,11 +22,16 @@ namespace FlightSim.Framework.Services
         Configuration Get(int configurationId);
 
         /// <summary>
-        /// Get the configuration that matches the passed id
+        /// Create a record in the database for the configuration
         /// </summary>
-        /// <param name="configurationId">The id of the configuration to retrieve</param>
-        /// <returns>The requested id</returns>
-        void Save(Configuration configurationToSave);
+        /// <param name="configurationToCreate">The configuration object to create a record in the database for</param>
+        void Create(Configuration configurationToCreate);
+
+        /// <summary>
+        /// Update the configuration in the database
+        /// </summary>
+        /// <param name="configurationToUpdate">The configuration object to update</param>
+        void Update(Configuration configurationToUpdate);
 
         /// <summary>
         /// Get all the stored configurations

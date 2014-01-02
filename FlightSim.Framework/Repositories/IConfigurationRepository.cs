@@ -32,11 +32,17 @@ namespace FlightSim.Framework.Repositories
         /// </summary>
         /// <returns>The active configuration</returns>
         Configuration GetActiveConfiguration();
-        
+
         /// <summary>
-        /// Save the passed configuration
+        /// Create a record in the database for the configuration
         /// </summary>
-        /// <param name="configuration">The configuration to save</param>
-        void Save(Configuration configuration);
+        /// <param name="configuration">The configuration object to create a record for</param>
+        void Create(Configuration configuration);
+
+        /// <summary>
+        /// Update the record for the configuration in the database
+        /// </summary>
+        /// <param name="configuration">The configuration to update</param>
+        void Update(Configuration configuration);
     }
 }

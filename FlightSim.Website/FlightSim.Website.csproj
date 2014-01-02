@@ -232,7 +232,7 @@
     <Content Include="Content\Site.css" />
     <None Include="Properties\PublishProfiles\FlightSim.pubxml" />
     <Content Include="Scripts\configuration.js" />
-    <Content Include="Scripts\flightSim.js" />
+    <Content Include="Scripts\experiment.js" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />

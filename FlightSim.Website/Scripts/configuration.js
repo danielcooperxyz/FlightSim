@@ -184,6 +184,22 @@ function saveConfig()
     $('#configurationInputs').submit();
 }
 
+function cancelNewConfig()
+{
+    $('#configurationInputs input').each(function () {
+        if ($(this).attr('type') === 'text')
+        {
+            $(this).val('');
+        }
+        else if ($(this).attr('type') === 'checkbox')
+        {
+            $(this).prop('checked', false);
+        }
+    });
+
+    $('#configurationInputs').slideUp('fast');
+}
+
 function newConfigurationHandler()
 {
     $('#createConfiguration').click(function()
@@ -201,8 +217,9 @@ function newConfigurationHandler()
             $(this).prop('checked', false);
         });
 
-        $('#configurationDisplay').slideUp();
-        $('#configurationInputs').slideDown();
+        $('#configurationDisplay').slideUp('fast', function () {
+            $('#configurationInputs').slideDown('fast');
+        });
     });
 }
 
@@ -222,8 +239,20 @@ function setSelectChangeHandler()
 
             $('#configurationInputs').slideUp('fast', function()
             {
-                $('#configurationDisplay').slideDown();
+                $('#configurationDisplay').slideDown('fast');
             });
+        }
+    });
+}
+
+function checkFormValues()
+{
+    $('#configurationInputs input').each(function ()
+    {
+        if ($(this).attr('type') === 'text' && $(this).val() !== '')
+        {
+            $('#configurationInputs').slideDown('fast');
+            return;
         }
     });
 }
@@ -236,6 +265,9 @@ $(document).ready(function ()
     setSelectChangeHandler();
     newConfigurationHandler();
 
+    checkFormValues();
+
     $('body').on('click', '#save', saveConfig);
+    $('body').on('click', '#cancel', cancelNewConfig);
 
 });

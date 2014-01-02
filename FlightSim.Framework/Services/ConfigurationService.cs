@@ -44,9 +44,15 @@ namespace FlightSim.Framework.Services
         }
 
         /// <inheritdoc />
-        public void Save(Configuration configurationToSave)
+        public void Create(Configuration configurationToCreate)
         {
-            this.configurationRepository.Save(configurationToSave);
+            this.configurationRepository.Create(configurationToCreate);
+        }
+
+        /// <inheritdoc />
+        public void Update(Configuration configurationToSave)
+        {
+            this.configurationRepository.Update(configurationToSave);
         }
 
         /// <inheritdoc />
@@ -69,7 +75,7 @@ namespace FlightSim.Framework.Services
             if (oldActive != null)
             {
                 oldActive.Active = false;
-                this.configurationRepository.Save(oldActive);
+                this.configurationRepository.Update(oldActive);
             }
 
             if (configuration.Active == false)
@@ -77,7 +83,7 @@ namespace FlightSim.Framework.Services
                 configuration.Active = true;
             }
 
-            this.configurationRepository.Save(configuration);
+            this.configurationRepository.Update(configuration);
         }
         
         /// <inheritdoc/>
@@ -105,7 +111,7 @@ namespace FlightSim.Framework.Services
 
             toDelete.Deleted = true;
 
-            this.configurationRepository.Save(toDelete);            
+            this.configurationRepository.Update(toDelete);            
         }
     }
 }

@@ -41,9 +41,12 @@ namespace FlightSim.Website.Controllers
         /// GET: /Configuration/
         /// </summary>
         /// <returns>The Index view</returns>
-        public ActionResult Index()
+        public ActionResult Index(ConfigurationModel model = null)
         {
-            ConfigurationModel model = new ConfigurationModel();
+            if (model == null)
+            {
+                model = new ConfigurationModel();
+            }
 
             model.StoredConfigurations = this.configurationService.GetConfigurations();
 
@@ -55,22 +58,42 @@ namespace FlightSim.Website.Controllers
         /// </summary>
         /// <param name="model">The configuration model</param>
         /// <returns></returns>
-        public void Save(ConfigurationModel model)
+        public ActionResult Save(ConfigurationModel model)
         {
+            ModelState.Clear();
+
             if (model != null)
             {
                 if (model.Configuration != null)
                 {
-                    if (model.Configuration.Active)
+                    if (model.Configuration.Name != null)
                     {
-                        this.configurationService.SaveNewActiveConfiguration(model.Configuration);
+                        if (model.Configuration.Id == 0)
+                        {
+                            this.configurationService.Create(model.Configuration);
+                        }
+                        else
+                        {
+                            if (model.Configuration.Active)
+                            {
+                                this.configurationService.SaveNewActiveConfiguration(model.Configuration);
+                            }
+                            else
+                            {
+                                this.configurationService.Update(model.Configuration);
+                            }
+                        }
                     }
                     else
                     {
-                        this.configurationService.Save(model.Configuration);
+                        ModelState.AddModelError("ConfigurationName", "You must enter a name for the configuration.");
+                        model.StoredConfigurations = this.configurationService.GetConfigurations();
+                        return this.View("Index", model);
                     }
                 }
             }
+
+            return this.RedirectToAction("Index", "Configuration", model);
         }
 
         /// <summary>
