@@ -65,7 +65,7 @@ textarea {
 
 /* General */
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 .centered {
@@ -142,6 +142,10 @@ a {
     text-align:center;
 }
 
+.error {
+    color: red;
+}
+
 /* Home */
 #homeTitle {
     margin-top:3em !important;
@@ -185,6 +189,10 @@ a {
     width:75%;
 }
 
+    #configurationSelector .table, #configurationDisplay .table {
+        width: 100%;
+    }
+
     #configurationSelector p 
     {
         display: inline-block;
@@ -201,10 +209,6 @@ a {
     width:75%;
 }
 
-    #configurationDisplay .table
-    {
-        width: 100%;
-    }
     #configurationDisplay .row .cell 
     {
         width: 20%;
@@ -218,7 +222,6 @@ a {
     #configurationDisplay h3 
     {
         margin-top:0;
-        column-span: all;
         -webkit-column-span: all;
     }
 

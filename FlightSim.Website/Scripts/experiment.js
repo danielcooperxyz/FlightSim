@@ -108,8 +108,6 @@ function setupTarget()
 // Save experiment results
 function postResults()
 {
-    $('#Experiment_EndTime').val(new Date().getTime());
-
     var stoppedTarget = target.stop();
 
     $('#Experiment_EndDiameter').val(stoppedTarget.css('height'));
@@ -143,6 +141,35 @@ function displayTarget()
     $('#reactionTime').html(reactionTime + ' seconds');
 }
 
+function bindExperimentKeypress()
+{
+    $('body').keypress(function (event)
+    {
+        $('#Experiment_EndTime').val(new Date().getTime());
+
+        if (event.which == 13)
+        {
+            event.preventDefault();
+
+            postResults();
+        }
+
+    });
+}
+
+function bindNewExperimentKeypress()
+{
+    $('body').keypress(function (event)
+    {
+        if (event.which == 13)
+        {
+            event.preventDefault();
+
+            window.location.href = newExperiment;
+        }
+    })
+}
+
 $(document).ready(function()
 {
 	// Remove body margin
@@ -159,9 +186,16 @@ $(document).ready(function()
 	    //});
 	}
 	
+
 	if ($("#experiment").length)
 	{
-	    winObj.click(postResults);
+	    winObj.click(function()
+	    {            
+	        $('#Experiment_EndTime').val(new Date().getTime());
+	        postResults();
+	    });
+
+	    bindExperimentKeypress();
 	    parseTargetData();
 
         // Begin
@@ -171,5 +205,6 @@ $(document).ready(function()
 	if ($('#saveExperiment').length)
 	{
 	    displayTarget();
+	    bindNewExperimentKeypress();
 	}
 });

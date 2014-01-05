@@ -1,0 +1,34 @@
+﻿@model FlightSim.Website.Models.ExperimentModel
+
+@{
+    ViewBag.Title = "Flight Sim";
+}
+
+<script type="text/javascript" src="~/Scripts/experiment.js"></script>
+<script type="text/javascript">
+    var newExperiment = '@Url.Action("Index", "Experiment")';
+</script>
+<style type="text/css">
+    body
+    {
+        background-color: @Model.Experiment.Configuration.BackgroundColour;
+    }
+
+    .circle
+    {
+        background-color: @Model.Experiment.Configuration.TargetColour;
+        border-color: @Model.Experiment.Configuration.TargetColour;
+    }
+</style>
+<div id="saveExperiment">
+    @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
+    {
+        @Html.HiddenFor(m => m.Experiment.Id)
+        @Html.HiddenFor(m => m.Experiment.ReactionTime)
+        @Html.HiddenFor(m => m.Experiment.XPosition)
+        @Html.HiddenFor(m => m.Experiment.YPosition)
+        @Html.HiddenFor(m => m.Experiment.EndDiameter)
+        @Html.HiddenFor(m => m.Experiment.EndOpacity)
+    }
+    <div id="template" hidden="hidden" class="circle"></div>
+</div>

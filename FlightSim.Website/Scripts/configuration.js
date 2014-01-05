@@ -116,14 +116,6 @@ function editConfigurationJSON(configuration) {
                     $('#Configuration_MovingTargets').prop('checked', false);
                 }
                 break;
-            case 8:
-                if (property[1] === 'true') {
-                    $('#Configuration_Active').prop('checked', true);
-                }
-                else {
-                    $('#Configuration_Active').prop('checked', false);
-                }
-                break;
             case 9:
                 break;
             case 10:
@@ -189,6 +181,9 @@ function cancelNewConfig()
     $('#configurationInputs input').each(function () {
         if ($(this).attr('type') === 'text')
         {
+            $(this).val('');
+        }
+        else if ($(this).attr('type') === 'hidden') {
             $(this).val('');
         }
         else if ($(this).attr('type') === 'checkbox')

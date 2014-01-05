@@ -3,7 +3,7 @@
     ViewBag.Title = "Flight Sim";
 }
 
-<script type="text/javascript" src="~/Scripts/flightSim.js"></script>
+<script type="text/javascript" src="~/Scripts/experiment.js"></script>
 <style type="text/css">
     body
     {
@@ -27,7 +27,7 @@
     }
 
     @Html.HiddenFor(m => m.Experiment.Configuration.InitialTargetSize, new { id = "initialTargetSize" })
-
+    @Html.HiddenFor(m => m.Experiment.Configuration.MovingTargets, new { id = "movingTargets" })
     @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
     {
         @Html.HiddenFor(m => m.Experiment.Id)
@@ -35,6 +35,8 @@
         @Html.HiddenFor(m => m.Experiment.EndTime)
         @Html.HiddenFor(m => m.Experiment.XPosition)
         @Html.HiddenFor(m => m.Experiment.YPosition)
+        @Html.HiddenFor(m => m.Experiment.EndDiameter)
+        @Html.HiddenFor(m => m.Experiment.EndOpacity)
     }
     <div id="template" hidden="hidden" class="circle"></div>
 </div>

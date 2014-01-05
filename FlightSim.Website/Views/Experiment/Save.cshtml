@@ -5,6 +5,9 @@
 }
 
 <script type="text/javascript" src="~/Scripts/experiment.js"></script>
+<script type="text/javascript">
+    var newExperiment = '@Url.Action("Index", "Experiment")';
+</script>
 <style type="text/css">
     body
     {
@@ -17,11 +20,7 @@
         border-color: @Model.Experiment.Configuration.TargetColour;
     }
 </style>
-<div id="saveExperiment"> 
-
-    <h3 class="centered">Reaction Time:</h3>
-    <h1 id="reactionTime" class="centered"></h1>
-
+<div id="saveExperiment">
     @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
     {
         @Html.HiddenFor(m => m.Experiment.Id)
