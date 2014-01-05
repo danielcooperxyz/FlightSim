@@ -266,6 +266,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Experiment\Index.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Views\Experiment\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

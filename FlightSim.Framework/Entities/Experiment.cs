@@ -66,6 +66,16 @@ namespace FlightSim.Framework.Entities
         private double endTime;
 
         /// <summary>
+        /// Stores the value for the diameter of the target when the user reacts
+        /// </summary>
+        private double endDiameter;
+
+        /// <summary>
+        /// Stores the value for the opacity of the target when the user reacts
+        /// </summary>
+        private double endOpacity;
+
+        /// <summary>
         /// Stores the configuration for the experiment
         /// </summary>
         private Configuration configuration;
@@ -170,6 +180,38 @@ namespace FlightSim.Framework.Entities
             set
             {
                 this.reactionTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the diameter when the user reacts
+        /// </summary>
+        public virtual double EndDiameter
+        {
+            get
+            {
+                return this.endDiameter;
+            }
+
+            set
+            {
+                this.endDiameter = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value for the diameter when the user reacts
+        /// </summary>
+        public virtual double EndOpacity
+        {
+            get
+            {
+                return this.endOpacity;
+            }
+
+            set
+            {
+                this.endOpacity = value;
             }
         }
 

@@ -30,6 +30,8 @@ namespace FlightSim.DataAccess.Mappings
             this.Property(e => e.ReactionTime, m => { m.Type<DoubleType>(); });
             this.Property(e => e.StartTime, m => { m.Type<DoubleType>(); });
             this.Property(e => e.EndTime, m => { m.Type<DoubleType>(); });
+            this.Property(e => e.EndDiameter, m => { m.Type<DoubleType>(); });
+            this.Property(e => e.EndOpacity, m => { m.Type<DoubleType>(); });
 
             this.ManyToOne(
             e => e.Configuration,

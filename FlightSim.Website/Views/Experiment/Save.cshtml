@@ -1,4 +1,5 @@
 ﻿@model FlightSim.Website.Models.ExperimentModel
+
 @{
     ViewBag.Title = "Flight Sim";
 }
@@ -10,29 +11,21 @@
         background-color: @Model.Experiment.Configuration.BackgroundColour;
     }
 
-    .circle 
+    .circle
     {
         background-color: @Model.Experiment.Configuration.TargetColour;
         border-color: @Model.Experiment.Configuration.TargetColour;
     }
 </style>
-<div id="experiment">   
-    @{
-        string radiuses = string.Join(",", Model.Experiment.RoundedRadiuses.ToArray());
-        <input id="Experiment_Radiuses" type="hidden" value="@radiuses" />
-    }    
-    @{
-        string opacities = string.Join(",", Model.Experiment.TargetOpacities.ToArray());
-        <input id="Experiment_Opacities" type="hidden" value="@opacities" />
-    }
+<div id="saveExperiment"> 
 
-    @Html.HiddenFor(m => m.Experiment.Configuration.InitialTargetSize, new { id = "initialTargetSize" })
-    @Html.HiddenFor(m => m.Experiment.Configuration.MovingTargets, new { id = "movingTargets" })
+    <h3 class="centered">Reaction Time:</h3>
+    <h1 id="reactionTime" class="centered"></h1>
+
     @using (Html.BeginForm("Save", "Experiment", FormMethod.Post, new { id = "experimentResults" }))
     {
         @Html.HiddenFor(m => m.Experiment.Id)
-        @Html.HiddenFor(m => m.Experiment.StartTime)
-        @Html.HiddenFor(m => m.Experiment.EndTime)
+        @Html.HiddenFor(m => m.Experiment.ReactionTime)
         @Html.HiddenFor(m => m.Experiment.XPosition)
         @Html.HiddenFor(m => m.Experiment.YPosition)
         @Html.HiddenFor(m => m.Experiment.EndDiameter)

@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-var target, startTime, timer, diameterValues, animationTimes, opacityValues;
+var target, startTime, timer, diameterValues, animationTimes, opacityValues, staticAnimation = 2000;
 
 // Generate a random value for the x position of the target
 function getRandomX() {
@@ -36,6 +36,7 @@ function setPosition(target)
 	target.css('left', randX);
 }
 
+// Parse data for target dimensions and opacity
 function parseTargetData()
 {
     var radiuses = $('#Experiment_Radiuses').val(),
@@ -61,46 +62,92 @@ function parseTargetData()
     }
 }
 
+// Set up initial position
 function setupTarget()
 {
-    var initialSize = parseFloat($('#initialTargetSize'));
+    var initialSize = parseFloat($('#initialTargetSize')),
+        movingTargets = $('#movingTargets').val();
     target = $('#template');
-    target.css('height', initialSize);
-    target.css('width', initialSize);
-    target.css("opacity", 0);
-    target.show();
-    setPosition(target);
-}
 
-function updateObject()
-{
-    timer++;
+    if (movingTargets === 'True') {
+        target.css('height', initialSize);
+        target.css('width', initialSize);
+        target.css('opacity', 0);
+        target.removeAttr('hidden');
+        setPosition(target);
 
-    if (timer < diameterValues.length)
-    {
-        target.animate(
-            {
-                width: diameterValues[timer].toString() + "px", height: diameterValues[timer].toString() + "px",
-                opacity: opacityValues[timer].toString()
-            },
-            animationTimes[timer],
-            'linear',
-            updateObject);
+
+        for (var i = 0; i < diameterValues.length; i++) {
+            if (i == 0) {
+                $('#Experiment_StartTime').val(new Date().getTime());
+            }
+
+            target = target.animate(
+                {
+                    width: diameterValues[i].toString() + "px",
+                    height: diameterValues[i].toString() + "px",
+                    opacity: opacityValues[i].toString()
+                },
+                animationTimes[i],
+                'linear');
+        }
     }
+    else
+    {
+        target.css('height', '4px');
+        target.css('width', '4px');
+        target.css('opacity', 0);
+        target.removeAttr('hidden');
+        setPosition(target);
+        target.animate({ opacity: '1' }, staticAnimation);
+    }
+
+    $('#Experiment_StartTime').val(new Date().getTime());
 }
 
+// Save experiment results
 function postResults()
 {
     $('#Experiment_EndTime').val(new Date().getTime());
 
+    var stoppedTarget = target.stop();
+
+    $('#Experiment_EndDiameter').val(stoppedTarget.css('height'));
+    $('#Experiment_EndOpacity').val(stoppedTarget.css('opacity'));
+
     $('#experimentResults').submit();
+}
+
+// Display target on save page
+function displayTarget()
+{
+    target = $('#template');
+
+    var xPosition = $('#Experiment_XPosition').val(),
+    yPosition = $('#Experiment_YPosition').val(),
+    diameter = $('#Experiment_EndDiameter').val(),
+    opacity = $('#Experiment_EndOpacity').val();
+
+    target.removeAttr('hidden');
+    target.css('left', parseInt(xPosition));
+    target.css('top', parseInt(yPosition));
+    target.css('height', diameter);
+    target.css('width', diameter);
+    target.css('opacity', opacity);
+    target.show();
+
+    reactionTime = $('#Experiment_ReactionTime').val();
+
+    reactionTime = reactionTime / 1000;
+
+    $('#reactionTime').html(reactionTime + ' seconds');
 }
 
 $(document).ready(function()
 {
 	// Remove body margin
-	var body = $('body').css('margin', 0),
-	object = $('')
+    var body = $('body').css('margin', 0),
+	object = $('');
 
 	winObj = $(window);
 
@@ -117,11 +164,12 @@ $(document).ready(function()
 	    winObj.click(postResults);
 	    parseTargetData();
 
-	    setupTarget();
-
         // Begin
-	    timer = -1;
-	    $('#Experiment_StartTime').val(new Date().getTime());
-	    updateObject();
+	    setupTarget();
+	}
+
+	if ($('#saveExperiment').length)
+	{
+	    displayTarget();
 	}
 });

@@ -57,7 +57,8 @@ namespace FlightSim.Website.Controllers
         /// POST: /Experiment/Save
         /// </summary>
         /// <param name="model">The experiment model which stores the experiment values to save</param>
-        public void Save(ExperimentModel model)
+        /// <returns>The Save view</returns>
+        public ActionResult Save(ExperimentModel model)
         {
             Experiment expToUpdate = this.experimentService.Get(model.Experiment.Id);
 
@@ -66,8 +67,14 @@ namespace FlightSim.Website.Controllers
             expToUpdate.StartTime = model.Experiment.StartTime;
             expToUpdate.EndTime = model.Experiment.EndTime;
             expToUpdate.ReactionTime = model.Experiment.EndTime - model.Experiment.StartTime;
+            expToUpdate.EndDiameter = model.Experiment.EndDiameter;
+            expToUpdate.EndOpacity = model.Experiment.EndOpacity;
 
             this.experimentService.Save(expToUpdate);
+
+            model.Experiment = expToUpdate;
+
+            return this.View(model);
         }
     }
 }
