@@ -4,36 +4,38 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-var target, startTime, timer, diameterValues, animationTimes, opacityValues, staticAnimation = 2000;
+var target, startTime, timer, diameterValues, animationTimes, opacityValues, pageSubmitted = false, staticAnimation = 2000;
 
 // Generate a random value for the x position of the target
-function getRandomX() {
-	var randomInt = Math.random(),
+function getRandomX()
+{
+    var randomInt = Math.random(),
 	winWidth = winObj.width();
 
-	return Math.floor(randomInt * winWidth);
+    return Math.floor(randomInt * winWidth);
 }
 
 // Generate a random value for the y position of the target
-function getRandomY(){
-	var randomInt = Math.random(),
+function getRandomY()
+{
+    var randomInt = Math.random(),
 	winHeight = winObj.height();
 
-	return Math.floor(randomInt * winHeight);
+    return Math.floor(randomInt * winHeight);
 }
 
 // Set the position of the target
 function setPosition(target)
 {
-	var newCircle,
+    var newCircle,
 	randX = getRandomX(),
 	randY = getRandomY();
 
-	$('#Experiment_XPosition').val(randX);
-	$('#Experiment_YPosition').val(randY);
+    $('#Experiment_XPosition').val(randX);
+    $('#Experiment_YPosition').val(randY);
 
-	target.css('top', randY);
-	target.css('left', randX);
+    target.css('top', randY);
+    target.css('left', randX);
 }
 
 // Parse data for target dimensions and opacity
@@ -47,7 +49,8 @@ function parseTargetData()
     diameterValues = new Array();
     animationTimes = new Array();
 
-    for (var i = 0; i < radiusKeyVals.length; i++) {
+    for (var i = 0; i < radiusKeyVals.length; i++)
+    {
         temp = radiusKeyVals[i].substring(1, radiusKeyVals[i].length).split(",");
 
         diameterValues[i] = parseFloat(temp[0]) * 2;
@@ -57,7 +60,8 @@ function parseTargetData()
     opacityValues = new Array();
     opacities = opacities.split(",");
 
-    for (var i = 0; i < opacities.length; i++) {
+    for (var i = 0; i < opacities.length; i++)
+    {
         opacityValues[i] = parseFloat(opacities[i]);
     }
 }
@@ -69,7 +73,8 @@ function setupTarget()
         movingTargets = $('#movingTargets').val();
     target = $('#template');
 
-    if (movingTargets === 'True') {
+    if (movingTargets === 'True')
+    {
         target.css('height', initialSize);
         target.css('width', initialSize);
         target.css('opacity', 0);
@@ -77,8 +82,10 @@ function setupTarget()
         setPosition(target);
 
 
-        for (var i = 0; i < diameterValues.length; i++) {
-            if (i == 0) {
+        for (var i = 0; i < diameterValues.length; i++)
+        {
+            if (i == 0)
+            {
                 $('#Experiment_StartTime').val(new Date().getTime());
             }
 
@@ -143,68 +150,74 @@ function displayTarget()
 
 function bindExperimentKeypress()
 {
-    $('body').keypress(function (event)
+    if ($('#experiment'))
     {
-        $('#Experiment_EndTime').val(new Date().getTime());
-
-        if (event.which == 13)
+        $('body').keypress(function (event)
         {
-            event.preventDefault();
+            $('#Experiment_EndTime').val(new Date().getTime());
 
-            postResults();
-        }
+            if (event.which == 32)
+            {
+                event.preventDefault();
 
-    });
+                postResults();
+            }
+
+        });
+    }
 }
 
 function bindNewExperimentKeypress()
 {
-    $('body').keypress(function (event)
+    if ($('#saveExperiment'))
     {
-        if (event.which == 13)
+        $('body').keypress(function (event)
         {
-            event.preventDefault();
+            if (event.which == 13)
+            {
+                event.preventDefault();
 
-            window.location.href = newExperiment;
-        }
-    })
+                window.location.href = newExperiment;
+            }
+        });
+    }
 }
 
-$(document).ready(function()
+$(document).ready(function ()
 {
-	// Remove body margin
+    // Remove body margin
     var body = $('body').css('margin', 0),
 	object = $('');
 
-	winObj = $(window);
+    winObj = $(window);
 
-	if ($("#homePage").length > 0)
-	{
-	    //$("#startButton").click(function ()
-	    //{
-	    //    window.open(experimentUrl, "popUpWindow", "width:600, height: 400, toolbar:no");
-	    //});
-	}
-	
+    if ($("#homePage").length > 0)
+    {
+        //$("#startButton").click(function ()
+        //{
+        //    window.open(experimentUrl, "popUpWindow", "width:600, height: 400, toolbar:no");
+        //});
+    }
 
-	if ($("#experiment").length)
-	{
-	    winObj.click(function()
-	    {            
-	        $('#Experiment_EndTime').val(new Date().getTime());
-	        postResults();
-	    });
 
-	    bindExperimentKeypress();
-	    parseTargetData();
+    if ($("#experiment").length)
+    {
+        winObj.click(function ()
+        {
+            $('#Experiment_EndTime').val(new Date().getTime());
+            postResults();
+        });
+
+        bindExperimentKeypress();
+        parseTargetData();
 
         // Begin
-	    setupTarget();
-	}
+        setupTarget();
+    }
 
-	if ($('#saveExperiment').length)
-	{
-	    displayTarget();
-	    bindNewExperimentKeypress();
-	}
+    if ($('#saveExperiment').length)
+    {
+        displayTarget();
+        bindNewExperimentKeypress();
+    }
 });

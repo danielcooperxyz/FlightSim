@@ -72,7 +72,7 @@ namespace FlightSim.Framework.Services
         {
             Configuration oldActive = this.configurationRepository.GetActiveConfiguration();
             
-            if (oldActive != null)
+            if (oldActive != null && oldActive.Id != configuration.Id)
             {
                 oldActive.Active = false;
                 this.configurationRepository.Update(oldActive);
