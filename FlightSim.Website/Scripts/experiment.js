@@ -156,7 +156,7 @@ function bindExperimentKeypress()
         {
             $('#Experiment_EndTime').val(new Date().getTime());
 
-            if (event.which == 32)
+            if (event.which == 13)
             {
                 event.preventDefault();
 
@@ -173,7 +173,7 @@ function bindNewExperimentKeypress()
     {
         $('body').keypress(function (event)
         {
-            if (event.which == 13)
+            if (event.which == 32)
             {
                 event.preventDefault();
 
